@@ -1,0 +1,1390 @@
+a
+{
+    color: #555;
+}
+
+::selection
+{
+    background-color: #444;
+    color: #eee;
+}
+
+body
+{
+    padding: 0;
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    font-variant-ligatures: normal;
+    font-size: 1.0em;
+}
+
+header#hdr-persistent
+{
+    position: sticky;
+    top: 0;
+    background-color: #222;
+    color: #ddd;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 0.2em 0.4em;
+    z-index: 1;
+}
+
+header#hdr-persistent img
+{
+    display: inline;
+    opacity: 0.9;
+    width: 35px;
+}
+
+header#hdr-persistent h1
+{
+    display: inline;
+    font-weight: 300;
+    font-size: 2.3em;
+    line-height: 0.8em;
+    color: #eee;
+}
+
+header#hdr-persistent p.tagline
+{
+    display: none;
+}
+
+header#hdr-persistent > a
+{
+    text-decoration: none;
+    color: white;
+}
+
+header#hdr-persistent a.title
+{
+    display: block;
+    padding-left: 8px;
+    grid-column: 2 / 3;
+}
+
+header#hdr-persistent a#hamburger
+{
+    font-size: 2.3rem;
+    padding: 0 0.3em;
+    margin: -0.3em 0.2rem -0.3em auto;
+    line-height: 0.5;
+    height: 100%;
+    transition: ease 0.3s background-color;
+}
+
+header#hdr-persistent a#hamburger.selected,
+header#hdr-persistent a#hamburger:hover
+{
+    background-color: black;
+}
+
+header#hdr-persistent nav#full-navigation
+{
+    display: none;
+    grid-column: 1/4;
+    background-color: black;
+    margin: 0 -0.4em;
+    padding: 0 2.5rem;
+    color: #aaa;
+    font-size: 1.3em;
+    list-style-type: none;
+}
+
+header#hdr-persistent nav#full-navigation.display
+{
+    display: block;
+}
+
+header#hdr-persistent nav#full-navigation a
+{
+    color: #ccc;
+    padding: 1rem;
+    text-align: center;
+}
+
+header#hdr-persistent nav#full-navigation nav.sections
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+
+header#hdr-persistent nav#full-navigation nav.sitenav
+{
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+}
+
+header#hdr-persistent nav#full-navigation a:hover
+{
+    color: #fff;
+    background-color: #222;
+    transition: ease 0.3s background-color, color;
+}
+
+header#hdr-persistent nav#full-navigation nav.sitenav a
+{
+    background-color: #222;
+    color: #aaa;
+    padding: 0.5rem;
+    font-style: italic;
+}
+
+header#hdr-persistent nav#full-navigation nav.sitenav a:hover
+{
+    background-color: #333;
+    color: #ccc;
+}
+
+header#hdr-masthead
+{
+    display: none;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    grid-template-columns: 0.45fr auto 0.45fr;
+    grid-template-rows: auto;
+    align-items: end;
+}
+
+header#hdr-masthead h1
+{
+    margin: 0;
+    text-align: center;
+    font-weight: 200;
+    font-size: 4em;
+    grid-column-start: 2;
+    margin-bottom: -0.2em;
+}
+
+header#hdr-masthead h1 a
+{
+    font-weight: 200;
+    text-decoration: none;
+    color: #222;
+}
+
+header#hdr-masthead > p
+{
+    margin: 0;
+    font-style: italic;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+header#hdr-masthead > p.motto
+{
+    text-align: right;
+    grid-column-start: 3;
+}
+
+a.social-link
+{
+    text-decoration: none;
+}
+
+a.social-link:hover
+{
+    opacity: 0.7;
+    transition: ease 0.3s opacity;
+}
+
+.full .social-link img,
+.motto .social-link img,
+.overview .social-link img
+{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.twitter-link img, .email-link img
+{
+    background-color: #898f9c;
+    border-radius: 0.75rem;
+}
+
+nav#main-navigation
+{
+    display: none;
+    text-align: center;
+    border-top: 0.5px solid #444;
+    padding: 1em 0;
+    margin: 1rem 2rem 0 2rem;
+    font-size: 1.2em;
+}
+
+nav#main-navigation a
+{
+    display: inline-block;
+    border: 0.5px solid #444;
+    padding: 0.2em 0.5em;
+}
+
+nav#main-navigation a:hover
+{
+    background-color: #444;
+    color: #eee;
+    transition: ease 0.3s background-color;
+}
+
+nav #more-expand
+{
+    display: none;
+}
+
+.overview
+{
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.overview article,
+.sec-review article,
+.full > section article
+{
+    border-bottom: 0.5px solid #666;
+}
+
+.overview article
+{
+    margin: 0 2rem;
+    padding-top: 1em;
+}
+
+.overview article a,
+.full > section article a,
+.sec-review article a
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.full > section.additional-articles article a
+{
+    color: #777;
+}
+
+.overview article a:hover h1,
+.full > section article a:hover h1,
+.sec-review article a:hover h1
+{
+    color: #555;
+    transition: ease 0.3s color;
+}
+
+.overview article img,
+.sec-review article img,
+.full > section article img
+{
+    max-width: 100%;
+}
+
+.overview article .section, .full > section article .section
+{
+    margin: 0.2em 0;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.overview article h1,
+.sec-review article h1,
+.full > section article h1
+{
+    margin: 0;
+    margin-bottom: 0.2em;
+    font-weight: 500;
+    color: #111;
+    font-size: 1.5em;
+}
+
+.full > section.additional-articles article h1
+{
+    color: #555;
+}
+
+.overview article p,
+.sec-review article p
+{
+    margin: 0.5em 0;
+    color: #555;
+    line-height: 1.3em;
+}
+
+article a:hover p
+{
+    color: #f11;
+    transition: ease 0.3s color;
+}
+
+.overview article .byline
+{
+    font-size: 0.8em;
+    font-style: italic;
+    color: #aaa;
+}
+
+.overview article .byline .name
+{
+    color: #666;
+}
+
+article .byline .name
+{
+    white-space: nowrap;
+}
+
+.overview .section-title
+{
+    padding: 0;
+    border-bottom: 0.5px solid black;
+    margin: 1.5em 2rem 0 2rem;
+    align-items: baseline;
+}
+
+.overview .section-title h2
+{
+    display: inline-block;
+    font-weight: 200;
+    padding: 0;
+    margin: 0;
+    font-size: 3.0em;
+}
+
+.overview .section-title h2 a
+{
+    font-weight: 200;
+    text-decoration: none;
+    color: inherit;
+}
+
+.overview .section-title h2 a:hover
+{
+    opacity: 0.7;
+    transition: ease 0.3s opacity;
+}
+
+.overview .section-title p
+{
+    display: inline-block;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    font-size: 1.0em;
+    text-align: right;
+    font-style: italic;
+}
+
+.overview > p.general-description
+{
+    margin: 1rem 2rem 0 2rem;
+    font-size: 1.5em;
+}
+
+.overview .section-title p span
+{
+    opacity: 0.375;
+}
+
+.overview .section-title p span.name
+{
+    white-space: nowrap;
+    opacity: 0.675;
+}
+
+.overview .more
+{
+    margin: 0.5em 2rem;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.overview .more a:hover
+{
+    opacity: 0.7;
+    transition: ease 0.3s opacity;
+}
+
+.overview .foot-motto
+{
+    text-align: center;
+    font-style: italic;
+    font-size: 3em;
+    color: #aaa;
+    border-bottom: 0.5px solid #888;
+    padding-bottom: 0.5rem;
+}
+
+footer
+{
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    color: #aaa;
+    background-color: #222;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+footer a
+{
+    display: inline-block;
+    color: #ccc;
+    padding: 0.5em;
+}
+
+footer a:hover
+{
+    color: #fff;
+    background-color: #333;
+}
+
+footer .imprint
+{
+    font-size: 0.9em;
+}
+
+footer .imprint p
+{
+    margin: 1em;
+}
+
+.full
+{
+    max-width: 1050px;
+}
+
+.full > hr, .sec-review > hr
+{
+    display: none;
+    border: none;
+}
+
+.full > article
+{
+    margin: 0 2rem 3em 2rem;
+    border-bottom: 0.5px solid #888;
+}
+
+.full > article h1
+{
+    font-size: 2.1em;
+    font-weight: 400;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.full > article p.lede
+{
+    font-size: 1.3em;
+    margin: 0.5rem 0 1rem 0;
+    color: #666;
+}
+
+.full > article header img
+{
+    width: 100%;
+}
+
+.full > article > p
+{
+    line-height: 1.8em;
+    margin-right: 2.5rem;
+    font-size: 1.05em;
+    margin: 1em 2.5rem 1.3rem 0;
+}
+
+.full > article > p:first-of-type::first-letter
+{
+    font-size: 4em;
+    line-height: 0.8em;
+    float: left;
+    margin-right: 0.1em;
+    color: #444;
+}
+
+.full > article > p:first-of-type
+{
+    font-size: 1.25em;
+}
+
+.full > article > p b
+{
+    font-weight: unset;
+}
+
+.full > article > p:first-of-type b
+{
+    font-weight: unset;
+    font-variant: small-caps;
+}
+
+.full > article > p:nth-of-type(2)
+{
+    font-size: 1.15em;
+}
+
+.full > article > p:last-of-type::after
+{
+    padding-left: 0.7em;
+    content: "□";
+}
+
+.full > article section.meta
+{
+    font-size: 1.15em;
+    font-style: italic;
+    color: #888;
+    border-bottom: 0.5px solid #888;
+    padding: 0.5em 0;
+    margin-top: -0.2em;
+}
+
+.full > article section.meta p
+{
+    margin: 0;
+}
+
+.full > article section.meta .section
+{
+    display: none;
+}
+
+.full > article section.meta .section a
+{
+    color: inherit;
+    text-decoration: none;
+}
+
+.full > article section.meta .section a:hover
+{
+    opacity: 0.7;
+    transition: ease 0.3s opacity;
+}
+
+.full > article section.meta .byline
+{
+    flex-grow: 1;
+    margin-right: 1em;
+    width: 100%;
+}
+
+.full > article section.meta .byline .name
+{
+    color: #222;
+}
+
+.full > article section.meta .issue
+{
+    display: none;
+}
+
+.full > section
+{
+    margin: 0 2rem;
+}
+
+.full > section h1
+{
+    font-weight: 400;
+    font-size: 2em;
+    color: #666;
+}
+
+.full > section article
+{
+    margin-bottom: 1em;
+}
+
+.full > article blockquote
+{
+    font-size: 2em;
+    width: 24ch;
+    margin: 5rem 0 1rem 2rem;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+.block-preview > article blockquote::before,
+.full > article blockquote::before
+{
+    content: "“";
+    font-size: 10rem;
+    display: block;
+    font-weight: 500;
+    line-height: 1rem;
+    color: #d11;
+}
+
+.full > article blockquote p
+{
+    margin: 0 0 0.5em 0;
+}
+
+.block-preview> article section.sidebar,
+.full > article section.sidebar
+{
+    background-color: #f6f1e6;
+    border-bottom: 1px solid #dad0ba;
+    max-width: 50ch;
+}
+
+.full > article section.sidebar h2
+{
+    border-top: 1px solid #dad0ba;
+    border-bottom: 1px solid #dad0ba;
+    margin: 0;
+    text-align: center;
+    padding: 0.4em;
+    font-weight: 500;
+}
+
+.full > article section.sidebar p
+{
+    margin: 1em;
+}
+
+.full > article figure
+{
+    margin: 0 2rem 0 0;
+}
+
+.full > article figure img
+{
+    width: 100%;
+}
+
+.full > article figure figcaption
+{
+    border-bottom:  0.5px solid #666;
+    font-size: 1.3em;
+    font-style: italic;
+    color: #444;
+    padding-top: 0.2em;
+    padding-bottom: 0.6em;
+}
+
+.social-footer
+{
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+.overview .social-footer
+{
+    margin: 1em 2rem;
+}
+
+.social-footer p
+{
+    display: inline-block;
+    margin: 0;
+    padding-left: 0.5em;
+}
+
+.social-footer img
+{
+    width: 1.5rem;
+}
+
+.social-footer a
+{
+    font-size: 1.5em;
+    margin-right: 0.75em;
+    margin-top: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.full > article header img
+{
+    width: 100%;
+}
+
+.full .about-articles
+{
+    margin-top: 5rem;
+}
+
+.sec-review
+{
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sec-review header
+{
+    border-bottom: 0.5px solid #666;
+}
+
+.sec-review h1
+{
+    font-weight: 400;
+    font-size: 3em;
+    margin: 0;
+}
+
+.sec-review p.description
+{
+    color: #222;
+}
+
+.sec-review p.email
+{
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+
+.sec-review p.editors
+{
+    font-style: italic;
+    font-size: 1.5em;
+    opacity: 0.7;
+    margin: 0;
+}
+
+.sec-review p.editors span
+{
+    opacity: 0.6;
+}
+
+.sec-review p.editors span.name
+{
+    opacity: 1.0;
+}
+
+.sec-review .pagination
+{
+    display: grid;
+    grid-template-columns: 10em 1fr 10em;
+    color: #666;
+    font-size: 1.5em;
+}
+
+.sec-review .pagination p
+{
+    text-align: center;
+}
+
+section.review
+{
+    background-color: #eee;
+    padding: 2rem 2rem 1.5rem 2rem;
+    font-size: 1.1em;
+    border-bottom: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    margin-top: 1rem;
+}
+
+section.review p.what
+{
+    margin: 0;
+    font-style: italic;
+    color: #444;
+}
+
+section.review h2
+{
+    margin: 0.2rem 0;
+    font-weight: 600;
+}
+
+section.review .stars
+{
+    font-size: 2em;
+    opacity: 0.8;
+    margin: 0.7rem 0 0.5rem -0.1em;
+}
+
+section.review dl
+{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 0;
+}
+
+section.review dt
+{
+    margin: 0.5em 0.5em 0.5em 0;
+    color: #666;
+    font-style: italic;
+}
+
+section.review dd
+{
+    margin: 0.5em;
+}
+
+@media (min-width:600px)
+{
+    header#hdr-persistent a.title
+    {
+        padding-left: 16px;
+    }
+
+    header#hdr-persistent p.tagline
+    {
+        margin: 0 0 0 0.5em;
+        font-size: 0.9em;
+        font-style: italic;
+        display: inline;
+    }
+
+    header#hdr-persistent a#hamburger
+    {
+        padding: 0 0.5em;
+    }
+
+    header#hdr-persistent nav#full-navigation nav.sections
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    header#hdr-persistent nav#full-navigation nav.sitenav
+    {
+        flex-direction: row;
+    }
+
+    header#hdr-persistent nav#full-navigation nav.sitenav a
+    {
+        flex-grow: 1;
+    }
+
+    .headlines article
+    {
+        padding: 0.3em 0 1em 0;
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+
+    .headlines article a
+    {
+        display: grid;
+        grid-template-columns: [copy] 0.4fr [image] 0.6fr;
+    }
+    
+    .headlines article img
+    {
+        grid-column-start: image;
+        grid-row-start: 2;
+        grid-row-end: 5;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        max-height: 300px;
+    }
+
+    .headlines article p, .headlines article h1
+    {
+        grid-column-start: copy;
+    }
+    
+    .headlines article h1
+    {
+        padding-right: 0.5em;
+    }
+
+    .headlines article p
+    {
+        padding-right: 0.8em;
+    }
+
+    .headlines
+    {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 1rem 2rem 0 2rem;
+    }
+
+    .subheadlines
+    {
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+        margin: 1rem 2rem 0 2rem;
+    }
+    
+    .subheadlines article
+    {
+        margin: 0;
+        grid-column-start: unset;
+        grid-column-end: unset;
+    }
+    
+    .subheadlines article a
+    {
+        display: block;
+    }
+
+    .additional-articles,
+    .full .top-stories
+    {
+        margin: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    article.top-stories p
+    {
+        font-size: 1.3em;
+    }
+
+    .overview .section-title
+    {
+        display: flex;
+        margin: 1.5rem 4rem 0 4rem;
+    }
+
+    .full > article
+    {
+        margin: 0 3rem;
+    }
+
+    .full > article h1
+    {
+        font-size: 3em;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .full > article p.lede
+    {
+        font-size: 1.5em;
+        margin: 1rem 0;
+    }
+
+    .full > article section.meta
+    {
+        padding-top: 0;
+    }
+
+    .full > article section.meta p
+    {
+        margin: 0.8em 0;
+    }
+
+    .full > article section.meta .issue
+    {
+        display: unset;
+    }
+
+    .full > section,
+    .full > section.top-stories
+    {
+        margin: 0 3rem;
+    }
+
+    .full > section.top-stories
+    {
+        margin: 0 3rem;
+    }
+
+    .full section.top-stories > h1
+    {
+        grid-column: 1/3;
+    }
+
+    .full section.top-stories article:nth-of-type(2n + 1),
+    .full section.about-articles article:nth-of-type(2n + 1)
+    {
+        margin-right: 1rem;
+    }
+
+    .full > article blockquote
+    {
+        float: right;
+        clear: both;
+        margin-top: 4rem;
+    }
+
+    .full > article section.sidebar
+    {
+        width: 30ch;
+        float: right;
+        clear: both;
+        margin: 0 2rem 2rem 2rem;
+    }
+
+    .overview .more,
+    .overview > p.general-description
+    {
+        margin: 0.5em 4rem;
+    }
+
+    .sec-review p.description
+    {
+        font-size: 1.2em;
+        max-width: 40%;
+        opacity: 0.7;
+        margin: 1rem 0 2rem 0;
+    }
+
+    .overview .social-footer
+    {
+        margin: 1em 4rem;
+    }
+
+    section.review
+    {
+        float: right;
+        margin: 2rem 0 0 2rem;
+    }
+}
+
+@media (min-width:900px)
+{
+    header#hdr-persistent p.tagline
+    {
+        display: none;
+    }
+
+    header#hdr-masthead
+    {
+        display: grid;
+    }
+
+    nav#main-navigation
+    {
+        display: block;
+    }
+
+    .overview article .byline
+    {
+        font-size: 0.9em;
+    }
+
+    .overview .about-articles
+    {
+        margin-bottom: 10rem;
+    }
+
+    .headlines
+    {
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        border-top: 0.5px double black;
+    }
+
+    .headlines article
+    {
+        margin: 0 1rem;
+    }
+
+    .headlines > article
+    {
+        grid-row-start: 2;
+        grid-column-start: unset;
+        grid-column-end: unset;
+    }
+
+    .headlines > article a
+    {
+        display: block;
+    }
+
+    .headlines > article:first-of-type
+    {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+    }
+
+    .headlines > article:first-of-type a
+    {
+        display: grid;
+    }
+
+    .headlines > article:first-of-type h1
+    {
+        font-size: 2.2em;
+    }
+
+    .subheadlines
+    {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 0 1rem;
+        grid-column-start: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+
+    .subheadlines article
+    {
+        flex-grow: 1;
+    }
+
+    .subheadlines article.top-stories
+    {
+        flex-grow: unset;
+    }
+
+    .additional-articles
+    {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 0.5rem auto;
+    }
+
+    .additional-articles article
+    {
+        margin: 0 1rem;
+    }
+
+    .sec-review .additional-articles article
+    {
+        margin-bottom: 1em;
+    }
+
+    article.top-stories p
+    {
+        font-size: unset;
+    }
+
+    .overview .section-title
+    {
+        margin: 3.5rem 1rem 0 1rem;
+    }
+
+    .overview .more
+    {
+        margin: 1em 1rem;
+    }
+
+    .overview > p.general-description
+    {
+        margin: 1em 1rem;
+    }
+
+    .full
+    {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr 4rem 20%;
+        margin: 0 auto;
+        padding: 0 5rem;
+    }
+
+    .full > hr, .sec-review > hr
+    {
+        display: block;
+        border-top: 0.5px solid #444;
+        width: 100%;
+        margin: 0;
+    }
+
+    .full > hr
+    {
+        grid-column: 1 / 4;
+    }
+
+    .full > article
+    {
+        margin: 0;
+    }
+
+    .full > article header
+    {
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        grid-template-columns: 30% 2.5rem 1fr;
+        margin-bottom: 2em;
+    }
+
+    .full > article header.noimg
+    {
+        grid-template-columns: 1fr 0 14rem;
+    }
+
+    .full > article header h1
+    {
+        margin: 0.2em 0 0.4em 0;
+        grid-column: 1 / 4;
+    }
+
+    .full > article header p.lede
+    {
+        grid-row-start: 2;
+        margin-top: -0.3em;
+    }
+
+    .full > article header img
+    {
+        grid-row: 2 / 4;
+        grid-column-start: 3;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .full > article header section.meta
+    {
+        grid-row-start: 3;
+    }
+
+    .full > article header section.meta .section
+    {
+        display: block;
+        font-size: 1.3em;
+        margin-bottom: 0;
+    }
+
+    .full > article > p
+    {
+        margin-right: 24%;
+        line-height: 1.85em;
+        font-size: 1.05em;
+    }
+
+    .full section.top-stories
+    {
+        display: block;
+        grid-column-start: 3;
+        margin: 0;
+    }
+
+    .full section.top-stories > h1
+    {
+        margin: 10rem 0 0.5em 0;
+    }
+
+    .full > section.top-stories article a
+    {
+        display: block;
+    }
+
+    .full > section.top-stories article:last-of-type
+    {
+        margin-bottom: 0;
+    }
+
+    .full section.continue
+    {
+        grid-row-start: 3;
+        margin: 0;
+        display: grid;
+    }
+
+    .full section.continue,
+    .full section.about-articles
+    {
+        grid-column: 1 / 4;
+    }
+
+    .full section.about-articles
+    {
+        margin: 3rem 0 0 0;
+        padding: 0;
+    }
+
+    .full > section.continue > h1
+    {
+        grid-row-start: 1;
+        grid-column: 1/4;
+    }
+
+    .full > section.continue article
+    {
+        margin: 0 2rem;
+    }
+
+    .full section.about-articles article:nth-of-type(2n + 1)
+    {
+        margin-left: 1rem;
+    }
+
+    .full section.about-articles article:nth-of-type(2n)
+    {
+        margin-right: 1rem;
+    }
+
+    .full > section.continue article:nth-of-type(3n+1),
+    .full > section.about-articles article:nth-of-type(4n+1),
+    .sec-review section.additional-articles article:nth-of-type(4n+1)
+    {
+        margin-left: 0;
+    }
+
+    .full > section.continue article:nth-of-type(3n),
+    .full > section.about-articles article:nth-of-type(4n),
+    .sec-review section.additional-articles article:nth-of-type(4n)
+    {
+        margin-right: 0;
+    }
+
+    .overview .social-footer
+    {
+        margin: 1em;
+    }
+
+    .full > article section.sidebar
+    {
+        margin-right: 0;
+    }
+
+    .full > article figure
+    {
+        margin: 2rem 24% 2rem -8%;
+    }
+
+    section.review
+    {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+article.top-stories
+{
+    background-color: #eee;
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+}
+
+article.top-stories h1
+{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+article.top-stories ol
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+article.top-stories a
+{
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+}
+
+article.top-stories a:hover, article.top-stories a:active
+{
+    background-color: #fff;
+    transition: ease 0.3s background-color;
+}
+
+article.top-stories .number
+{
+    font-size: 2em;
+    color: #666;
+}
+
+article.top-stories a:hover .number
+{
+    color: #333;
+}
+
+article.top-stories p
+{
+    margin: 0 0 0 0.5em;
+}
