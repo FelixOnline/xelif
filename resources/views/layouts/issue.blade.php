@@ -22,13 +22,15 @@ window.onScroll = function(e) {
 </section>
 
 <section class="overview additional-articles">
-@foreach ($issue->articleRange('news', 5) as $article)
+@foreach ($issue->articleRange('news', 5, null, $fillCapacity ? 4 : false) as $article)
     <x-tease :article="$article" />
 @endforeach
 </section>
 
 @foreach ($sections->skip(1) as $dispSection)
-<?php $sectionArticles = $issue->articleRange($dispSection->getSlug()); ?>
+@php
+$sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, $fillCapacity);
+@endphp
 
 @if (count($sectionArticles))
 <a id="sec-{{ $dispSection->id }}"></a>

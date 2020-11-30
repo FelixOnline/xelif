@@ -8,6 +8,7 @@ use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
 use App\Models\Article;
+use App\Models\Issue;
 
 class ArticleRepository extends ModuleRepository
 {
@@ -58,5 +59,21 @@ class ArticleRepository extends ModuleRepository
         }
 
         return parent::filter($query, $scopes);
+    }
+
+    public function getAdditionalArticles(\App\Models\Issue $priorToIssue,
+                                            \App\Models\Section $section,
+                                            $count)
+    {
+        $query = $this->model->newQuery();
+
+        $query->whereHas('section', function($q) use ($section) {
+            $q->where('id', $section->id);
+        })->whereHas('issue', function($q) use ($priorToIssue) {
+            $q->where('issue', '<', $priorToIssue->issue)
+                ->published();
+        })->published()->ordered()->limit($count);
+
+        return $query->get();
     }
 }

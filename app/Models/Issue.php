@@ -40,7 +40,27 @@ class Issue extends Model implements Sortable
         return $this->articleLookup[$section][$index];
     }
 
-    public function articleRange($section, $begin = null, $count = null)
+    /**
+     * Gets a set of articles in this issue, or potentially from prior issues, in
+     * a given section slug.
+     *
+     * @param string $section The section slug for which to get articles.
+     * @param int|null $begin The number of articles to skip from the beginning
+     *                          of the section in this issue in the returned
+     *                          set of articles.
+     * @param int|null $count The number of articles to be returned.
+     * @param bool|int $fillBreak If an integer, fills the number of returned
+     *                              articles up to the next multiple of this
+     *                              number using articles from prior issues in this
+     *                              category. If TRUE, gets the value for this
+     *                              parameter from the value of $count, which
+     *                              must not be null. If FALSE, no bulking with prior
+     *                              issue articles will be performed.
+     */
+    public function articleRange($section,
+                                    $begin = null,
+                                    $count = null,
+                                    $fillBreak = false)
     {
         $this->buildArticleLookupFromSlug($section);
 
@@ -54,6 +74,24 @@ class Issue extends Model implements Sortable
 
         if ($count != null)
             $collection = $collection->take($count);
+
+        if ($fillBreak === true)
+            $fillBreak = $count;
+
+        if ($fillBreak)
+        {
+            $currently = count($collection) % $fillBreak;
+            $needed = $fillBreak - $currently;
+
+            if ($needed > 0)
+            {
+                $additionalArticles =
+                    app(\App\Repositories\ArticleRepository::class)
+                        ->getAdditionalArticles($this, Section::forSlug($section)->first(), $needed);
+
+                $collection = $collection->concat($additionalArticles);
+            }
+        }
 
         return $collection;
     }

@@ -29,6 +29,7 @@ class IssueController extends Controller
             'aboutSection' => Section::forSlug('about')->first(),
             'topStories' => Article::inBucket('top_stories'),
             'look' => $this->settingsController->lookAndFeel(),
+            'fillCapacity' => $id == null,
         ]);
     }
 
