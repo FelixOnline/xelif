@@ -40,4 +40,23 @@ class ArticleRepository extends ModuleRepository
 
         return $fields;
     }
+
+    public function filter($query, $scopes = [])
+    {
+        if (isset($scopes['issue_id']) && $scopes['issue_id'] == -1)
+        {
+            unset($scopes['issue_id']);
+            $query->where('issue_id', function($q)
+            {
+                $q->from('issues')->select('id')->orderBy('issue', 'DESC')->limit(1);
+            });
+        }
+        else if (isset($scopes['issue_id']) && $scopes['issue_id'] == 0)
+        {
+            unset($scopes['issue_id']);
+            $query->where('issue_id', null);
+        }
+
+        return parent::filter($query, $scopes);
+    }
 }

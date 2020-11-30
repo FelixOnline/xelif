@@ -44,6 +44,12 @@ class ArticleController extends ModuleController
         ]
     ];
 
+    protected $filters = [
+        'issue' => 'issue_id',
+    ];
+
+    protected $filtersDefaultOptions = ['issue' => -1];
+
     protected function previewData($item)
     {
         return [
@@ -64,5 +70,27 @@ class ArticleController extends ModuleController
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
             'issues' => app()->make(\App\Repositories\IssueRepository::class)->listAll('issue'),
         ];
+    }
+
+    protected function indexData($request)
+    {
+        return [
+            'issueList' => array_merge(
+            [
+                ['value' => 0, 'label' => 'Cross-site'],
+                ['value' => -1, 'label' => 'Latest Issue'],
+            ],
+            $this->getIssueFilterEntries()),
+        ];
+    }
+
+    protected function getIssueFilterEntries() : Array
+    {
+        return app(\App\Repositories\IssueRepository::class)
+                ->listAllForceOrder('issue', ['issue' => 'DESC'])
+                ->map(function($value, $key) {
+                    return ['value' => $key, 'label' => "Issue $value"];
+                })
+                ->toArray();
     }
 }

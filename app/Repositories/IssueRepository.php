@@ -26,4 +26,23 @@ class IssueRepository extends ModuleRepository
     {
         return parent::getFormFields($object);
     }
+
+    /**
+     * Annoyingly necessary because ModuleRepository->listAll() will ignore
+     * the $orders parameter if the model is instanceof Sortable (why...)
+     * Obviously if PHP was less bin programming language we'd just define a new
+     * overload with a boolean flag but... alas...
+     */
+    public function listAllForceOrder($column, $orders = [])
+    {
+        $query = $this->model->newQuery();
+
+        if (!empty($orders))
+            $query = $this->order($query, $orders);
+
+        if ($this->model->isTranslatable())
+            $query = $query->withTranslation();
+
+        return $query->get()->pluck($column, 'id');
+    }
 }
