@@ -68,7 +68,7 @@ class ArticleController extends ModuleController
     {
         return [
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
-            'issues' => app()->make(\App\Repositories\IssueRepository::class)->listAll('issue'),
+            'issues' => app()->make(\App\Repositories\IssueRepository::class)->listAll('issue')->sortDesc(),
         ];
     }
 
