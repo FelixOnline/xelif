@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
-class ArticleController extends ModuleController
+class ArticleController extends GatedModuleController
 {
     public function __construct(\App\Http\Controllers\SettingsController $settings,
                                 Application $app,

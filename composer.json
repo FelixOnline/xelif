@@ -43,8 +43,10 @@
             "database/factories"
         ],
         "files": [
-            "app/helpers.php"
-        ]
+            "app/helpers.php",
+            "app/Models/Enums/UserRole.php"
+        ],
+        "exclude-from-classmap": ["vendor/area17/twill/src/Models/Enums/UserRole.php"]
     },
     "autoload-dev": {
         "psr-4": {

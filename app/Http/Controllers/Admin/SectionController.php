@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
-
-class SectionController extends ModuleController
+class SectionController extends GatedModuleController
 {
     protected $moduleName = 'sections';
 
