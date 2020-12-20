@@ -18,7 +18,8 @@ class GatedModuleController extends ModuleController
     /**
      * The policy here is:
      * If the user has `publish` permissions, we don't need to gate anything
-     * Otherwise, if the entity is published, we forbid making changes to them;
+     * Otherwise, if the entity is published, we forbid making changes to them,
+     * including unpublishing;
      * but we allow changes to be made on draft entities.
      *
      * @param int $id
@@ -31,32 +32,23 @@ class GatedModuleController extends ModuleController
             // If we can publish, we don't need to do further checks
             return parent::update($id, $submoduleId);
         } else {
-            $item = $this->repository->getById($submoduleId ?? $id);
             $input = $this->request->all();
-
-            switch ($input['cmsSaveType']) {
-                // TODO: respondWithError does not reset the slider on the front end.
-                case 'publish':
+            $item = $this->repository->getById($submoduleId ?? $id);
+            if ($input['published']) {
+                // We are make the item live, along with whatever change we have made. Block
+                return $this->respondWithError(
+                    $this->modelTitle . ' was not published. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
+                );
+            } else {
+                if ($item->published) {
+                    // we are trying to unpubish a published item. Block
                     return $this->respondWithError(
-                        $this->modelTitle . ' was not published. You do not have the permission to publish a ' . strtolower($this->modelTitle)
+                        $this->modelTitle . ' was not unpublished. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
                     );
-                case 'save':
-                case 'update':
-                    if ($item->published) {
-                        // We don't allow update of a published item as it will cause live changes
-                        return $this->respondWithError(
-                            $this->modelTitle . ' was not updated. You do not have the permission to update a live ' . strtolower($this->modelTitle)
-                        );
-                    } else {
-                        // But we do allow update of a draft
-                        return parent::update($id, $submoduleId);
-                    }
-                default:
-                    return $this->respondWithError(
-                        'unknown operation'
-                    );
+                }
+                // We are editing a draft, allow.
+                return parent::update($id, $submoduleId);
             }
-
         }
     }
 
