@@ -8,4 +8,5 @@ class UserRole extends Enum
 {
     const EDITOR = 'Editor';
     const ADMIN = 'Admin';
+    const PUBLISHER = 'Publisher';
 }
