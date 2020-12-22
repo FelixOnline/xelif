@@ -31,6 +31,7 @@ return [
     'settings' => [
         'title' => 'Settings',
         'route' => 'admin.settings',
+        'can' => 'administrate',
         'params' => ['section' => 'look-and-feel'],
         'primary-navigation' => [
             'look-and-feel' => [

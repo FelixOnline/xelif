@@ -27,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         parent::boot();
 
+        Gate::define('administrate', function ($user) {
+            return $this->authorize($user, function ($user) {
+                return $user->role_value == UserRole::ADMIN;
+            });
+        });
+
         Gate::define('list', function ($user) {
             return $this->authorize($user, function ($user) {
                 return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
@@ -46,10 +52,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // Note that this gate does NOT affect the UserRole's ability to publish CRUD modules
-        // (articles, issues, sections etc.), because Twill does not consult Gate::allows when
-        // updates are happening. We implements this check in Http/Controllers/Admin/GatedModuleController
-        //
-        // However, it does remove the bulk publish options from drop downs in admin interface.
+        // (articles, issues, sections etc.), because toggling from draft to live in the editing page
+        // is routed through ModuleController::update rather than publish. It does remove the bulk publish
+        // options from drop downs in admin interface, as that goes through ModuleController::publish and is
+        // correctly gated via Laravel's middleware.
         Gate::define('publish', function ($user) {
             return $this->authorize($user, function ($user) {
                 return $this->userHasRole($user, [UserRole::PUBLISHER, UserRole::ADMIN]);
