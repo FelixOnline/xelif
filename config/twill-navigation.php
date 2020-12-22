@@ -20,6 +20,7 @@ return [
     'top-stories' => [
         'title' => 'Top Stories',
         'route' => 'admin.top-stories.homepage',
+        'can' => 'feature',
         'primary_navigation' => [
             'homepage' => [
                 'title' => 'Homepage',
