@@ -17,7 +17,7 @@ class GatedModuleController extends ModuleController
 {
     /**
      * The policy here is:
-     * If the user has `publish` permissions, we don't need to gate anything
+     * If the user has `live-change` permissions, we don't need to gate anything
      * Otherwise, if the entity is published, we forbid making changes to them,
      * including unpublishing;
      * but we allow changes to be made on draft entities.
@@ -29,7 +29,7 @@ class GatedModuleController extends ModuleController
     public function update($id, $submoduleId = null): JsonResponse
     {
         if (Gate::allows('live-change')) {
-            // If we can publish, we don't need to do further checks
+            // If we can make any live change, we don't need to do further checks
             return parent::update($id, $submoduleId);
         } else {
             $input = $this->request->all();
@@ -55,15 +55,17 @@ class GatedModuleController extends ModuleController
     public function destroy($id, $submoduleId = null)
     {
         if (Gate::allows('live-change')) {
-            // If we can publish, we don't need to do further checks
+            // If we can make any live change, we don't need to do further checks
             return parent::destroy($id, $submoduleId);
         } else {
             $item = $this->repository->getById($submoduleId ?? $id);
             if ($item->published) {
+                // Otherwise, we don't allow the deletion of a live item
                 return $this->respondWithError(
                     $this->modelTitle . ' was not deleted. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
                 );
             } else {
+                // But we allow the deletion of a draft item
                 return parent::destroy($id, $submoduleId);
             }
         }

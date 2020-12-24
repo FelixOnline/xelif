@@ -42,19 +42,19 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('list', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
         Gate::define('edit', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
         Gate::define('reorder', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
@@ -77,19 +77,19 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('delete', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
         Gate::define('duplicate', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
         Gate::define('upload', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
+                return $this->userHasRole($user, UserRole::values());
             });
         });
 
