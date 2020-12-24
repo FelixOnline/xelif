@@ -20,6 +20,7 @@ return [
     'top-stories' => [
         'title' => 'Top Stories',
         'route' => 'admin.top-stories.homepage',
+        'can' => 'feature',
         'primary_navigation' => [
             'homepage' => [
                 'title' => 'Homepage',
@@ -30,6 +31,7 @@ return [
     'settings' => [
         'title' => 'Settings',
         'route' => 'admin.settings',
+        'can' => 'administrate',
         'params' => ['section' => 'look-and-feel'],
         'primary-navigation' => [
             'look-and-feel' => [

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use A17\Twill\Http\Controllers\Admin\ModuleController;
-
-class IssueController extends ModuleController
+class IssueController extends GatedModuleController
 {
     protected $moduleName = 'issues';
 
