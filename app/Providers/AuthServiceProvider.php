@@ -33,6 +33,13 @@ class AuthServiceProvider extends ServiceProvider
             });
         });
 
+        Gate::define('live-change', function ($user) {
+            return $this->authorize($user, function ($user) {
+                return $this->userHasRole($user, [UserRole::PUBLISHER, UserRole::ADMIN]);
+            });
+        });
+
+
         Gate::define('list', function ($user) {
             return $this->authorize($user, function ($user) {
                 return $this->userHasRole($user, [UserRole::EDITOR, UserRole::PUBLISHER, UserRole::ADMIN]);
@@ -58,13 +65,13 @@ class AuthServiceProvider extends ServiceProvider
         // correctly gated via Laravel's middleware.
         Gate::define('publish', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::PUBLISHER, UserRole::ADMIN]);
+                return Gate::forUser($user)->allows('live-change');
             });
         });
 
         Gate::define('feature', function ($user) {
             return $this->authorize($user, function ($user) {
-                return $this->userHasRole($user, [UserRole::PUBLISHER, UserRole::ADMIN]);
+                return Gate::forUser($user)->allows('live-change');
             });
         });
 

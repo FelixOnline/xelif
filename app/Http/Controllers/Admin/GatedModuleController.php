@@ -23,12 +23,12 @@ class GatedModuleController extends ModuleController
      * but we allow changes to be made on draft entities.
      *
      * @param int $id
-     * @param null $submoduleId
+     * @param int|null $submoduleId
      * @return JsonResponse
      */
     public function update($id, $submoduleId = null): JsonResponse
     {
-        if (Gate::allows('publish')) {
+        if (Gate::allows('live-change')) {
             // If we can publish, we don't need to do further checks
             return parent::update($id, $submoduleId);
         } else {
@@ -51,5 +51,23 @@ class GatedModuleController extends ModuleController
             }
         }
     }
+
+    public function destroy($id, $submoduleId = null)
+    {
+        if (Gate::allows('live-change')) {
+            // If we can publish, we don't need to do further checks
+            return parent::destroy($id, $submoduleId);
+        } else {
+            $item = $this->repository->getById($submoduleId ?? $id);
+            if ($item->published) {
+                return $this->respondWithError(
+                    $this->modelTitle . ' was not deleted. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
+                );
+            } else {
+                return parent::destroy($id, $submoduleId);
+            }
+        }
+    }
+
 
 }
