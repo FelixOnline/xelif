@@ -19,9 +19,10 @@ class IssueController extends Controller
 
     public function show($id = null)
     {
-        $issue = $id == null
-               ? $this->getLatestPublished()
-               : $this->getPublished($id);
+        $singleIssue = $id != null;
+        $issue = $singleIssue
+                ? $this->getPublished($id)
+                : $this->getLatestPublished();
 
         return view('layouts.issue', [
             'issue' => $issue,
@@ -29,7 +30,7 @@ class IssueController extends Controller
             'aboutSection' => Section::forSlug('about')->first(),
             'topStories' => Article::inBucket('top_stories'),
             'look' => $this->settingsController->lookAndFeel(),
-            'fillCapacity' => $id == null,
+            'singleIssueView' => $singleIssue,
         ]);
     }
 

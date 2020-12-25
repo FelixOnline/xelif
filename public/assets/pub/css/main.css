@@ -867,7 +867,7 @@ section.review dd
         display: grid;
         grid-template-columns: [copy] 0.4fr [image] 0.6fr;
     }
-    
+
     .headlines article img
     {
         grid-column-start: image;
@@ -883,7 +883,7 @@ section.review dd
     {
         grid-column-start: copy;
     }
-    
+
     .headlines article h1
     {
         padding-right: 0.5em;
@@ -908,14 +908,14 @@ section.review dd
 
         margin: 1rem 2rem 0 2rem;
     }
-    
+
     .subheadlines article
     {
         margin: 0;
         grid-column-start: unset;
         grid-column-end: unset;
     }
-    
+
     .subheadlines article a
     {
         display: block;
@@ -1113,7 +1113,7 @@ section.review dd
         margin: 0 0 0 1rem;
         grid-column-start: 3;
         grid-row-start: 1;
-        grid-row-end: 3;
+        grid-row-end: 2;
     }
 
     .subheadlines article

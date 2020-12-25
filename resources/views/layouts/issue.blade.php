@@ -11,25 +11,23 @@ window.onScroll = function(e) {
 
 @section('body')
 <section class="overview headlines">
-    <x-tease image="true" byline="true" :article="$issue->maybeArticle('news', 0)" />
-    <x-tease image="true" byline="true" :article="$issue->maybeArticle('news', 1)" />
-    <x-tease image="true" byline="true" :article="$issue->maybeArticle('news', 2)" />
+    @foreach ($issue->articleRange('news', 0, 4, $singleIssueView ? false : 4) as $article)
+        <x-tease image="true" byline="true" :article="$article" />
+    @endforeach
     <section class="subheadlines">
-        <x-tease :article="$issue->maybeArticle('news', 3)" />
         <x-trending :articles="$topStories" :look="$look" />
-        <x-tease :article="$issue->maybeArticle('news', 4)" />
     </section>
 </section>
 
 <section class="overview additional-articles">
-@foreach ($issue->articleRange('news', 5, null, $fillCapacity ? 4 : false) as $article)
+@foreach ($issue->articleRange('news', 4, null, $singleIssueView ? false : 4) as $article)
     <x-tease :article="$article" />
 @endforeach
 </section>
 
 @foreach ($sections->skip(1) as $dispSection)
 @php
-$sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, $fillCapacity);
+$sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, !$singleIssueView);
 @endphp
 
 @if (count($sectionArticles))

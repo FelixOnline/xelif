@@ -18,7 +18,7 @@ class Issue extends Model implements Sortable
         'publish_start_date',
         'publish_end_date',
     ];
-    
+
     public $slugAttributes = [
         'issue',
     ];
@@ -70,7 +70,7 @@ class Issue extends Model implements Sortable
         $collection = $this->articleLookup[$section];
 
         if ($begin)
-            $collection = $collection->skip($begin - 1);
+            $collection = $collection->skip($begin);
 
         if ($count != null)
             $collection = $collection->take($count);
@@ -80,11 +80,11 @@ class Issue extends Model implements Sortable
 
         if ($fillBreak)
         {
-            $currently = count($collection) % $fillBreak;
-            $needed = $fillBreak - $currently;
-
-            if ($needed > 0)
+            $rem = count($collection) % $fillBreak;
+            if ($rem != 0)
             {
+                $needed = $fillBreak - $rem;
+
                 $additionalArticles =
                     app(\App\Repositories\ArticleRepository::class)
                         ->getAdditionalArticles($this, Section::forSlug($section)->first(), $needed);
