@@ -1094,6 +1094,7 @@ section.review dd
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 1;
+        margin-bottom: 1rem;
     }
 
     .headlines > article:first-of-type a
@@ -1123,7 +1124,8 @@ section.review dd
 
     .subheadlines article.top-stories
     {
-        flex-grow: unset;
+        padding: 1em 0;
+        margin-top: 1rem;
     }
 
     .additional-articles
