@@ -81,6 +81,7 @@ class Issue extends Model implements Sortable
         if ($fillBreak)
         {
             $rem = count($collection) % $fillBreak;
+
             if ($rem != 0)
             {
                 $needed = $fillBreak - $rem;
