@@ -5,7 +5,9 @@ namespace App\Repositories;
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\ModuleRepository;
+
 use App\Models\Issue;
+use App\Http\Controllers\IssueController;
 
 class IssueRepository extends ModuleRepository
 {
@@ -20,6 +22,8 @@ class IssueRepository extends ModuleRepository
     {
         $this->updateRepeater($object, $fields, 'article', 'Article');
         parent::afterSave($object, $fields);
+
+        IssueController::clearCache($object->id);
     }
 
     public function getFormFields($object)

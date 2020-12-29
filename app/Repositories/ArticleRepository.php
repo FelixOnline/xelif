@@ -7,8 +7,11 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
+use Illuminate\Support\Facades\Cache;
+
 use App\Models\Article;
 use App\Models\Issue;
+use App\Http\Controllers\IssueController;
 
 class ArticleRepository extends ModuleRepository
 {
@@ -31,6 +34,8 @@ class ArticleRepository extends ModuleRepository
 
         $this->updateBrowser($object, $fields, 'writers');
         $object->save();
+
+        IssueController::clearCache($object->issue_id);
     }
 
     public function getFormFields($object)
