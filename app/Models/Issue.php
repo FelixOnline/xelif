@@ -80,12 +80,11 @@ class Issue extends Model implements Sortable
 
         if ($fillBreak)
         {
-            $rem = count($collection) % $fillBreak;
+            $currently = count($collection) % $fillBreak;
+            $needed = $fillBreak - $currently;
 
-            if ($rem != 0)
+            if ($needed > 0)
             {
-                $needed = $fillBreak - $rem;
-
                 $additionalArticles =
                     app(\App\Repositories\ArticleRepository::class)
                         ->getAdditionalArticles($this, Section::forSlug($section)->first(), $needed);
@@ -108,6 +107,7 @@ class Issue extends Model implements Sortable
         return \App\applyPublishedCriteria($this->article())
                 ->where('section_id', $section->id)
                 ->orderBy('position')
+                ->limit(20)
                 ->get();
     }
 }
