@@ -700,9 +700,24 @@ footer .imprint p
     align-items: center;
 }
 
-.full > article header img
+.full > article header figure
 {
     width: 100%;
+}
+
+.full > article figure span.credit
+{
+    border: none;
+    display: block;
+    margin-top: -1.6em;
+    background-color: #ffffff66;
+    /* Backgrounds only draw if non-opaque... */
+    opacity: 0.99;
+    padding: 0 0.5em;
+    text-align: right;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #111;
 }
 
 .full .about-articles
@@ -1216,10 +1231,15 @@ section.review dd
         margin-top: -0.3em;
     }
 
-    .full > article header img
+    .full > article header figure
     {
         grid-row: 2 / 4;
         grid-column-start: 3;
+        margin: 0 2rem 0 0;
+    }
+
+    .full > article header img
+    {
         height: 100%;
         object-fit: cover;
     }

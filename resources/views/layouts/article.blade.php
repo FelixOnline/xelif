@@ -51,7 +51,11 @@
 <section class="full">
     <hr />
     <article>
-        <?php $hasImage = $article->hasIMage('main', 'flexible'); ?>
+    @php
+        $media = $article->imageObject('main', 'flexible');
+        $hasImage = !empty($media);
+        $credit = $hasImage ? $media->getMetadata('credit') : null;
+    @endphp
         <header
             @if (!$hasImage)
                 class="noimg"
@@ -59,9 +63,14 @@
             >
             <h1>{{ $article->headline }}</h1>
             <p class="lede">{{ $article->lede }}</p>
-            @if ($article->hasImage('main', 'flexible'))
-                <img src="{{ $article->image('main', 'flexible') }}"
-                        alt="{{ $article->imageAltText('main') }}" />
+            @if ($hasImage)
+                <figure>
+                    <img src="{{ $article->image('main', 'flexible') }}"
+                            alt="{{ $article->imageAltText('main') }}" />
+                    @if ($credit)
+                        <span class="credit">Photo: {{ $credit }}</span>
+                    @endif
+                </figure>
             @endif
             <section class="meta">
                 <p class="section sec-{{ $section->id }}">

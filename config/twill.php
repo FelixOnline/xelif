@@ -48,4 +48,9 @@ return [
     'frontend' => [
         'views_path' => 'layouts'
     ],
+    'media_library' => [
+        'extra_metadatas_fields' => [
+            ['name' => 'credit', 'label' => 'Credit'],
+        ]
+    ],
 ];
