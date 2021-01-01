@@ -601,7 +601,6 @@ footer .imprint p
 .full > article blockquote
 {
     font-size: 2em;
-    width: 24ch;
     margin: 5rem 0 1rem 2rem;
     margin-top: 5rem;
     margin-bottom: 1rem;
@@ -1012,6 +1011,7 @@ section.review dd
     .full > article blockquote
     {
         float: right;
+        width: 24ch;
         clear: both;
         margin-top: 4rem;
     }
