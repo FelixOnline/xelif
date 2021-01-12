@@ -35,7 +35,8 @@ class ArticleRepository extends ModuleRepository
         $this->updateBrowser($object, $fields, 'writers');
         $object->save();
 
-        IssueController::clearCache($object->issue_id);
+        if ($object->issue_id !== null)
+            IssueController::clearCache($object->issue_id);
     }
 
     public function getFormFields($object)
