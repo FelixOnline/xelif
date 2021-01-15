@@ -25,7 +25,7 @@ window.onScroll = function(e) {
 @endforeach
 </section>
 
-@foreach ($sections->skip(1) as $dispSection)
+@foreach ($sections->filter(function ($s) {return strtolower($s->title) !== "news";}) as $dispSection)
 @php
 $sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, !$singleIssueView);
 @endphp
