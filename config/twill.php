@@ -19,6 +19,11 @@ return [
                 'icon' => 'star-feature',
                 'component' => 'a17-block-review',
             ],
+            'youtube' => [
+                'title' => 'YouTube Video',
+                'icon' => 'video',
+                'component' => 'a17-block-youtube',
+            ],
         ],
         'block_views_path' => 'blocks',
         'block_single_layout' => 'admin/block-preview'

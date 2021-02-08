@@ -43,6 +43,6 @@
     ])
 
     @formField('block_editor', [
-        'blocks' => ['text', 'quotation', 'sidebar', 'image', 'review', ]
+        'blocks' => ['text', 'quotation', 'sidebar', 'image', 'review', 'youtube', ]
     ])
 @stop
