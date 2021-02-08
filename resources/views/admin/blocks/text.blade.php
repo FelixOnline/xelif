@@ -9,8 +9,9 @@
         ['list' => 'bullet'],
         ['list' => 'ordered'],
         'link',
+        'blockquote',
+        'code-block',
         'clean'
     ],
-    'editSource' => true,
     'translated' => false,
 ])
