@@ -4,6 +4,11 @@ return [
     'admin_middleware_group' => 'admin',
     'block_editor' => [
         'blocks' => [
+            'text' => [
+                'title' => 'Body text',
+                'icon' => 'text',
+                'component' => 'a17-block-text',
+            ],
             'quotation' => [
                 'title' => 'Quote',
                 'icon' => 'text',
