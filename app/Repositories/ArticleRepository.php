@@ -22,6 +22,15 @@ class ArticleRepository extends ModuleRepository
         $this->model = $model;
     }
 
+    public function beforeSave($object, $fields)
+    {
+        parent::beforeSave($object, $fields);
+
+        if (isset($fields['issue_id']) && $object->issue_id !== null && $fields['issue_id'] !== $object->issue_id)
+            IssueController::clearCache($object->issue_id);
+
+    }
+
     public function afterSave($object, $fields)
     {
         parent::afterSave($object, $fields);
