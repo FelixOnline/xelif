@@ -100,6 +100,9 @@
                     <x-section-links :sections="$sections" />
                 </nav>
                 <nav class="sitenav">
+@if (env("FELIX_ARCHIVE_LINK"))
+                    <a href="{{ env("FELIX_ARCHIVE_LINK") }}">Issue Archive</a>
+@endif
 @foreach ($aboutSection->articles as $article)
                     <a href="{{ $article->link() }}">{{ $article->headline }}</a>
 @endforeach
