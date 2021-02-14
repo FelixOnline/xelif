@@ -321,6 +321,7 @@ article a:hover p
     transition: ease 0.3s color;
 }
 
+.sec-review article .byline,
 .overview article .byline
 {
     font-size: 0.8em;
@@ -328,6 +329,7 @@ article a:hover p
     color: #aaa;
 }
 
+.sec-review article .byline .name,
 .overview article .byline .name
 {
     color: #666;

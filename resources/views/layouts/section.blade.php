@@ -18,7 +18,7 @@
 
     <section class="additional-articles">
         @foreach ($articles as $tease)
-            <x-tease :article="$tease" image="true" :section="false" />
+            <x-tease :article="$tease" image="true" :section="false" :byline="true" />
         @endforeach
     </section>
 
