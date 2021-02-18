@@ -95,9 +95,13 @@ class Article extends Model implements Sortable
 
     public function scopePublished($query)
     {
-        return parent::scopePublished($query)->whereHas('issue', function ($q) {
+        if (!$this->issue) {
+            return parent::scopePublished($query);
+        } else {
+            return parent::scopePublished($query)->whereHas('issue', function ($q) {
                 $q->published();
-        });
+            });
+        }
     }
 
     public function getTitleInBucketAttribute()
