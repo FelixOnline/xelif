@@ -24,11 +24,11 @@ class Article extends Model implements Sortable
         'section_id',
         'issue_id',
     ];
-    
+
     public $slugAttributes = [
         'headline',
     ];
-    
+
     public $mediasParams = [
         'main' => [
             'flexible' => [
@@ -91,6 +91,13 @@ class Article extends Model implements Sortable
     public function buckets()
     {
         return $this->morphMany(\A17\Twill\Models\Feature::class, 'featured');
+    }
+
+    public function scopePublished($query)
+    {
+        return parent::scopePublished($query)->whereHas('issue', function ($q) {
+                $q->published();
+        });
     }
 
     public function getTitleInBucketAttribute()
