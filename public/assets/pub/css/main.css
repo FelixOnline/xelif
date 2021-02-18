@@ -86,7 +86,7 @@ header#hdr-persistent nav#full-navigation
     display: none;
     grid-column: 1/4;
     background-color: black;
-    margin: 0 -0.4em;
+    margin: 0 -0.3em;
     padding: 0 2.5rem;
     color: #aaa;
     font-size: 1.3em;
