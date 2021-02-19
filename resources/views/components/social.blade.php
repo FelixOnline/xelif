@@ -20,3 +20,10 @@
     <P>fb.com/{{ $look['facebook'] }}</p>
 @endif
 </a>
+<a href="https://instagram.com/{{ $look['instagram'] }}" class="social-link ins-link">
+    <img src="/assets/pub/img/instagram.svg" alt="Instagram Logo" />
+@if ($text)
+    <P>{{ $look['instagram'] }}</p>
+@endif
+</a>
+

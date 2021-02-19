@@ -202,7 +202,7 @@ a.social-link:hover
     height: 1.5rem;
 }
 
-.twitter-link img, .email-link img
+.twitter-link img, .email-link img, .ins-link img
 {
     background-color: #898f9c;
     border-radius: 0.75rem;

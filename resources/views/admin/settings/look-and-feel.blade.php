@@ -89,23 +89,30 @@
     ])
 
     @formField('input', [
+        'name' => 'instagram',
+        'label' => 'Instagram Account',
+        'default' => 'felix_imperial',
+        'note' => 'Just the name of the account, no URL',
+    ])
+
+    @formField('input', [
         'name' => 'twitter',
         'label' => 'Twitter Handle',
-        'default' => '',
+        'default' => 'feliximperial',
         'note' => 'Do not include the @',
     ])
 
     @formField('input', [
         'name' => 'facebook',
         'label' => 'Facebook Page',
-        'default' => '',
+        'default' => 'FelixImperial',
         'note' => 'Just the name of the page, no URL',
     ])
 
     @formField('input', [
         'name' => 'email',
         'label' => 'E-Mail Account',
-        'default' => ''
+        'default' => 'felix@ic.ac.uk'
     ])
 
     @formField('radios', [
