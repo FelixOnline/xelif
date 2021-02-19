@@ -80,11 +80,11 @@ class Issue extends Model implements Sortable
 
         if ($fillBreak)
         {
-            $currently = count($collection) % $fillBreak;
-            $needed = $fillBreak - $currently;
-
-            if ($needed > 0)
+            $rem = count($collection) % $fillBreak;
+            if ($rem != 0 || count($collection) === 0)
             {
+                $needed = $fillBreak - $rem;
+
                 $additionalArticles =
                     app(\App\Repositories\ArticleRepository::class)
                         ->getAdditionalArticles($this, Section::forSlug($section)->first(), $needed);
