@@ -76,9 +76,7 @@
                 <p class="section sec-{{ $section->id }}">
                     <a href="{{ $section->link() }}">{{ $section->title }}</a>
                 </p>
-@if (strtolower($section->title) != "about")
                 <x-byline :article="$article" />
-@endif
 @if ($issue)
                 <p class="issue">in Issue {{ $issue->issue }}</p>
 @endif
