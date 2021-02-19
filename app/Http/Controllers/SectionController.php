@@ -40,13 +40,13 @@ class SectionController extends Controller
         if ($page)
             $articles->offset(($page - 1) * $this->articlesPerPage);
 
-        return $articles->limit($this->articlesPerPage)->get()->sortByDesc('issue_id');
+        return $articles->limit($this->articlesPerPage)->get();
     }
 
     protected function getArticlesQueryStub(Section $section)
     {
         return Article::where('section_id', $section->id)
-                        ->scopes(['published', 'visible']);
+                        ->scopes(['published', 'visible'])->ordered();
     }
 
     protected function getArticleCount(Section $section)

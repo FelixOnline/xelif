@@ -104,6 +104,13 @@ class Article extends Model implements Sortable
         }
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderByDesc(
+            Issue::select('issue')->whereColumn('id', 'articles.issue_id')
+        )->orderBy('position');
+    }
+
     public function getTitleInBucketAttribute()
     {
         return $this->section->title . ": " . $this->headline;
