@@ -10,8 +10,8 @@ class ArticleView extends Model
 
     protected $fillable = [
         'article_id',
-        'ip',
         'user_agent',
+        'referer'
     ];
 
     public function article()
@@ -27,8 +27,8 @@ class ArticleView extends Model
     {
         ArticleView::create([
             'article_id' => $articleId,
-            'ip' => \Request::getClientIp(),
             'user_agent' => \Request::header('User-Agent'),
+            'referer' => \Request::header('Referer')
         ]);
     }
 }
