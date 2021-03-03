@@ -26,6 +26,8 @@ class Section extends Model implements Sortable
         'title',
     ];
 
+    protected $with = ['slugs'];
+
     public function writers()
     {
         return $this->belongsToMany(\App\Models\Writer::class);

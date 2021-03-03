@@ -48,6 +48,9 @@ class Article extends Model implements Sortable
         ],
     ];
 
+    // Articles are almost always fetched these models
+    protected $with = ['section', 'issue', 'slugs', 'medias'];
+
     public function writers()
     {
         return $this->belongsToMany(\App\Models\Writer::class);

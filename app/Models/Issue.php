@@ -25,6 +25,8 @@ class Issue extends Model implements Sortable
 
     protected $articleLookup = [];
 
+    protected $with = ['slugs'];
+
     public function article()
     {
         return $this->hasMany(\App\Models\Article::class);
