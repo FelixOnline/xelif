@@ -10,8 +10,11 @@ window.onScroll = function(e) {
 @endsection
 
 @section('body')
+@php
+    $newsArticles = $issue->articleRange('news', null, 8, !$singleIssueView);
+@endphp
 <section class="overview headlines">
-    @foreach ($issue->articleRange('news', 0, 4, $singleIssueView ? false : 4) as $article)
+    @foreach ($newsArticles->take(4) as $article)
         <x-tease image="true" byline="true" :article="$article" />
     @endforeach
     <section class="subheadlines">
@@ -20,7 +23,7 @@ window.onScroll = function(e) {
 </section>
 
 <section class="overview additional-articles">
-@foreach ($issue->articleRange('news', 4, null, $singleIssueView ? false : 4) as $article)
+@foreach ($newsArticles->skip(4) as $article)
     <x-tease :article="$article" />
 @endforeach
 </section>
