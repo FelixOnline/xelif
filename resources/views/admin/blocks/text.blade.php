@@ -12,6 +12,10 @@
         'link',
         'blockquote',
         'code-block',
+        ['script' => 'super'],
+        ['script' => 'sub'],
+        ['indent' => '-1'],
+        ['indent' => '+1'],
         'clean'
     ],
     'translated' => false,
