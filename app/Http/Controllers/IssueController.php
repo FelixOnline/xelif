@@ -63,14 +63,11 @@ class IssueController extends Controller
 
     public function getLatestPublished(): Issue
     {
-        $query = Issue::select('*');
-        return \App\applyPublishedCriteria($query)
-                     ->orderByDesc('issue')->firstOrFail();
+        return Issue::select('*')->published()->visible()->orderByDesc('issue')->firstOrFail();
     }
 
     public function getPublished($id): Issue
     {
-        $query = Issue::where('issue', $id);
-        return \App\applyPublishedCriteria($query)->firstOrFail();
+        return Issue::where('issue', $id)->published()->visible()->firstOrFail();
     }
 }

@@ -106,7 +106,7 @@ class Issue extends Model implements Sortable
 
     protected function buildArticleLookup(Section $section)
     {
-        return \App\applyPublishedCriteria($this->article())
+        return $this->article()->published()->visible()
                 ->where('section_id', $section->id)
                 ->orderBy('position')
                 ->limit(20)
