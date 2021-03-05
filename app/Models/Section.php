@@ -60,7 +60,7 @@ class Section extends Model implements Sortable
     public function loadArticleCount()
     {
         $this->load(['articles_count' => function($q) {
-            $q->scopes(['published', 'visiuble']);
+            $q->scopes(['published', 'visible']);
         }]);
     }
 }
