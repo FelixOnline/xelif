@@ -40,7 +40,7 @@ class SectionController extends Controller
         if ($page)
             $articles->offset(($page - 1) * $this->articlesPerPage);
 
-        return $articles->limit($this->articlesPerPage)->get();
+        return $articles->with('writers')->limit($this->articlesPerPage)->get();
     }
 
     protected function getArticlesQueryStub(Section $section)
