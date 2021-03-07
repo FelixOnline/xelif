@@ -1,10 +1,10 @@
 @php
-    $media = $block->imageObject('image', 'desktop');
+    $media = $block->imageObject('image', 'flexible');
     $hasImage = !empty($media);
     $credit = $hasImage ? $media->getMetadata('credit') : null;
 @endphp
 <figure>
-    <img src="{{ $block->image('image', 'desktop') }}"
+    <img src="{{ $block->image('image', 'flexible') }}"
             alt="{{ $block->imageAltText('image') }}" />
             <?php $caption = $block->imageCaption('image'); ?>
     @if ($credit)

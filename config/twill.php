@@ -26,7 +26,17 @@ return [
             ],
         ],
         'block_views_path' => 'blocks',
-        'block_single_layout' => 'admin/block-preview'
+        'block_single_layout' => 'admin/block-preview',
+        'crops' => [
+            'image' => [
+                'flexible' => [
+                    [
+                        'name' => 'free',
+                        'ratio' => 0,
+                    ],
+                ],
+            ],
+        ],
     ],
     'buckets' => [
         'homepage' => [
