@@ -15,7 +15,7 @@ window.onScroll = function(e) {
 @endphp
 <section class="overview headlines">
     @foreach ($newsArticles->take(4) as $article)
-        <x-tease image="true" byline="true" :article="$article" />
+        <x-tease image="true" byline="true" :article="$article" imageWidth=800 />
     @endforeach
     <section class="subheadlines">
         <x-trending :articles="$topStories" :look="$look" />
@@ -42,7 +42,7 @@ $sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, !$sing
     </div>
     <section class="overview additional-articles">
     @foreach ($sectionArticles as $tease)
-        <x-tease :article="$tease" :image="true" />
+        <x-tease :article="$tease" :image="true" imageWidth=600 />
     @endforeach
     </section>
     <p class="more sec-{{ $dispSection->id }}"><a href="{{ $dispSection->link() }}">Read more &raquo;</a></p>

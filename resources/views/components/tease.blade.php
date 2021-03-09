@@ -2,6 +2,7 @@
     'article',
     'section' => true,
     'image' => false,
+    'imageWidth' => 0,
     'lede' => true,
     'byline' => false,
 ])
@@ -13,7 +14,7 @@
     @endif
             <h1>{{ $article->headline }}</h1>
     @if ($image && $article->hasImage('main', 'flexible'))
-            <img src="{{ $article->image('main', 'flexible') }}"
+            <img src="{{ $article->image('main', 'flexible', $imageWidth ? ['w'=>$imageWidth] : []) }}"
                  alt="{{ $article->imageAltText('main') }}"
                     loading="lazy" />
     @endif
