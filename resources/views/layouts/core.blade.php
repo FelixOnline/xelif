@@ -86,7 +86,7 @@
         <a id="sec-top"></a>
         <header id="hdr-persistent">
             <a href="{{ route('home') }}">
-                <img src="/assets/pub/img/cat-white.png" alt="Felix Cat" />
+                <img src="/assets/pub/img/cat-white.svg" alt="Felix Cat" />
             </a>
             <a href="{{ route('home') }}" class="title">
                 <h1>{{ $look['minihead-title'] }}</h1>
