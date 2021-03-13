@@ -25,10 +25,12 @@ class ArticleView extends Model
 
     public static function createViewRecord($articleId)
     {
-        ArticleView::create([
-            'article_id' => $articleId,
-            'user_agent' => \Request::header('User-Agent'),
-            'referer' => \Request::header('Referer')
-        ]);
+        if (!\Crawler::isCrawler()){
+            ArticleView::create([
+                'article_id' => $articleId,
+                'user_agent' => \Request::header('User-Agent'),
+                'referer' => \Request::header('Referer')
+            ]);
+        }
     }
 }
