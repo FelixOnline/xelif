@@ -6,6 +6,7 @@ use App\Models\Issue;
 use App\Models\Article;
 use App\Models\ArticleView;
 use App\Models\Section;
+use App\Repositories\ArticleRepository;
 
 class ArticleController extends Controller
 {
@@ -48,7 +49,9 @@ class ArticleController extends Controller
 
     protected function showCore($issue, $section, $article)
     {
-        $top = $this->getTopStories($article);
+        $top = app(ArticleRepository::class)
+            ->getTopStories()
+            ->reject(function ($item) use ($article) {return $item->id == $article->id;});
 
         return view('layouts.article', [
             'article'=> $article,
@@ -60,13 +63,6 @@ class ArticleController extends Controller
             'continueReading' => $this->getContinueReading($issue, $article, $section, $top),
             'look' => $this->settingsController->lookAndFeel(),
         ]);
-    }
-
-    protected function getTopStories(Article $article)
-    {
-        return Article::inBucket('top_stories')
-                ->reject(function($top) use ($article) { return $top->id == $article->id; })
-                ->take(4);
     }
 
     protected function getContinueReading(?Issue $issue,

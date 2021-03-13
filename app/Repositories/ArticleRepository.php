@@ -7,10 +7,10 @@ use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
 use A17\Twill\Repositories\ModuleRepository;
-use Illuminate\Support\Facades\Cache;
+use App\Models\ArticleView;
+use Carbon\Carbon;
 
 use App\Models\Article;
-use App\Models\Issue;
 use App\Http\Controllers\IssueController;
 
 class ArticleRepository extends ModuleRepository
@@ -90,5 +90,14 @@ class ArticleRepository extends ModuleRepository
         })->published()->ordered()->limit($count);
 
         return $query->get();
+    }
+
+    public function getTopStories() {
+        $views = ArticleView::select("article_id", \DB::raw("COUNT(*) as view_count"))
+            ->where('created_at', '>', Carbon::now()->subWeeks(2))
+            ->groupBy('article_id');
+        return $this->model->published()->visible()
+            ->joinSub($views, 'views', function ($join){ $join->on('articles.id', '=', 'views.article_id'); })
+            ->orderByDesc('view_count')->limit(5)->get();
     }
 }

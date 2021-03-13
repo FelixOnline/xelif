@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
+use App\Repositories\ArticleRepository;
 use Illuminate\Support\Facades\Cache;
 
 use App\Models\Issue;
 use App\Models\Section;
-use App\Models\Article;
 
 class IssueController extends Controller
 {
@@ -32,7 +31,7 @@ class IssueController extends Controller
                 'issue' => $issue,
                 'sections' => Section::current()->get(),
                 'aboutSection' => Section::forSlug('about')->first(),
-                'topStories' => Article::inBucket('top_stories'),
+                'topStories' => app(ArticleRepository::class)->getTopStories(),
                 'look' => $this->settingsController->lookAndFeel(),
                 'singleIssueView' => $singleIssue,
             ])->render();

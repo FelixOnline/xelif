@@ -38,28 +38,28 @@ return [
             ],
         ],
     ],
-    'buckets' => [
-        'homepage' => [
-            'name' => 'Home',
-            'buckets' => [
-                'top_stories' => [
-                    'name' => 'Top Stories',
-                    'bucketables' => [
-                        [
-                            'module' => 'articles',
-                            'name' => 'Articles',
-                            'scopes' => ['published' => true],
-                            'searchField' => '%headline',
-                        ],
-                    ],
-                    'max_items' => 5,
-                ],
-            ],
-        ],
-    ],
-    'bucketsRoutes' => [
-        'homepage' => 'top-stories',
-    ],
+//    'buckets' => [
+//        'homepage' => [
+//            'name' => 'Home',
+//            'buckets' => [
+//                'top_stories' => [
+//                    'name' => 'Top Stories',
+//                    'bucketables' => [
+//                        [
+//                            'module' => 'articles',
+//                            'name' => 'Articles',
+//                            'scopes' => ['published' => true],
+//                            'searchField' => '%headline',
+//                        ],
+//                    ],
+//                    'max_items' => 5,
+//                ],
+//            ],
+//        ],
+//    ],
+//    'bucketsRoutes' => [
+//        'homepage' => 'top-stories',
+//    ],
     'frontend' => [
         'views_path' => 'layouts'
     ],
