@@ -22,3 +22,18 @@ Route::get('/section/{section}/{slug}', [\App\Http\Controllers\ArticleController
 
 Route::get('/section/{name}', [\App\Http\Controllers\SectionController::class, 'show'])
     ->name('section');
+
+$v2_paths = [
+    'articles', 'arts', 'authors', 'biz', 'books', 'cands', 'categories', 'comment',
+    'culture', 'categories', 'editorial', 'fashion', 'features', 'film', 'food', 'frontpage', 'games',
+    'highlights', 'images', 'issues', 'millenials', 'music', 'news', 'phoenix', 'politics',
+    'publications', 'science', 'sex', 'sport', 'tags', 'tech', 'travel', 'tv', 'welfare'
+];
+
+$v2_path_regex = "(" . implode('|', $v2_paths) . ")/.*";
+
+if (getenv('FELIX_V2_LINK')){
+    Route::get('/{old_path}', function($old_path) {
+        return redirect(env('FELIX_V2_LINK')."/". $old_path);
+    })->where('old_path', $v2_path_regex);
+}
