@@ -14,7 +14,10 @@ window.onScroll = function(e) {
     $newsArticles = $issue->articleRange('news', null, 8, !$singleIssueView);
 @endphp
 <section class="overview headlines">
-    @foreach ($newsArticles->take(4) as $article)
+    @if ($featured)
+        <x-tease image="true" byline="true" :article="$featured" imageWidth=800 />
+    @endif
+    @foreach ($newsArticles->take($featured ? 3: 4) as $article)
         <x-tease image="true" byline="true" :article="$article" imageWidth=800 />
     @endforeach
     <section class="subheadlines">

@@ -43,28 +43,29 @@ return [
             ],
         ],
     ],
-//    'buckets' => [
-//        'homepage' => [
-//            'name' => 'Home',
-//            'buckets' => [
-//                'top_stories' => [
-//                    'name' => 'Top Stories',
-//                    'bucketables' => [
-//                        [
-//                            'module' => 'articles',
-//                            'name' => 'Articles',
-//                            'scopes' => ['published' => true],
-//                            'searchField' => '%headline',
-//                        ],
-//                    ],
-//                    'max_items' => 5,
-//                ],
-//            ],
-//        ],
-//    ],
-//    'bucketsRoutes' => [
-//        'homepage' => 'top-stories',
-//    ],
+    'buckets' => [
+        'homepage' => [
+            'name' => 'Home',
+            'buckets' => [
+                'featured' => [
+                    'name' => 'Featured',
+                    'bucketables' => [
+                        [
+                            'module' => 'articles',
+                            'name' => 'Articles',
+                            'scopes' => ['published' => true],
+                            'orders' => ['created_at' => 'desc'],
+                            'searchField' => '%headline',
+                        ],
+                    ],
+                    'max_items' => 1,
+                ],
+            ],
+        ],
+    ],
+    'bucketsRoutes' => [
+        'homepage' => 'featured',
+    ],
     'frontend' => [
         'views_path' => 'layouts'
     ],

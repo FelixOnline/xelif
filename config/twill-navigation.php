@@ -17,17 +17,17 @@ return [
         'title' => 'Writers',
         'module' => true,
     ],
-//    'top-stories' => [
-//        'title' => 'Top Stories',
-//        'route' => 'admin.top-stories.homepage',
-//        'can' => 'feature',
-//        'primary_navigation' => [
-//            'homepage' => [
-//                'title' => 'Homepage',
-//                'route' => 'admin.top-stories.homepage',
-//            ]
-//        ],
-//    ],
+    'featured' => [
+        'title' => 'Featured',
+        'route' => 'admin.featured.homepage',
+        'can' => 'feature',
+        'primary_navigation' => [
+            'homepage' => [
+                'title' => 'Homepage',
+                'route' => 'admin.featured.homepage',
+            ]
+        ],
+    ],
     'settings' => [
         'title' => 'Settings',
         'route' => 'admin.settings',

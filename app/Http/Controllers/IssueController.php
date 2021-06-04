@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use Illuminate\Support\Facades\Cache;
 
@@ -23,6 +24,7 @@ class IssueController extends Controller
         $issue = $singleIssue
                 ? $this->getPublished($id)
                 : $this->getLatestPublished();
+        $featured = $singleIssue ? null : Article::inBucket('featured')->first();
 
 //        return Cache::rememberForever(self::buildCacheKey($id),
 //                                function() use ($issue, $singleIssue)
@@ -32,6 +34,7 @@ class IssueController extends Controller
                 'sections' => Section::current()->get(),
                 'aboutSection' => Section::forSlug('about')->first(),
                 'topStories' => app(ArticleRepository::class)->getTopStories(),
+                'featured' => $featured,
                 'look' => $this->settingsController->lookAndFeel(),
                 'singleIssueView' => $singleIssue,
             ])->render();
