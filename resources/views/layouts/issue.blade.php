@@ -42,7 +42,7 @@ $sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, !$sing
     </div>
     <section class="overview additional-articles">
     @foreach ($sectionArticles as $tease)
-        <x-tease :article="$tease" :image="true" imageWidth=600 />
+        <x-tease :article="$tease" :byline="true" :image="true" imageWidth=600 />
     @endforeach
     </section>
     <p class="more sec-{{ $dispSection->id }}"><a href="{{ $dispSection->link() }}">Read more &raquo;</a></p>
