@@ -103,9 +103,11 @@
 @if (env("FELIX_ARCHIVE_LINK"))
                     <a href="{{ env("FELIX_ARCHIVE_LINK") }}">Issue Archive</a>
 @endif
-@foreach ($aboutSection->articles as $article)
+@if ($aboutSection !== null)
+    @foreach ($aboutSection->articles as $article)
                     <a href="{{ $article->link() }}">{{ $article->headline }}</a>
-@endforeach
+    @endforeach
+@endif
                 </nav>
             </nav>
         </header>
@@ -134,9 +136,11 @@
                 <x-section-links :sections="$sections" />
             </nav>
             <nav class="meta">
-@foreach ($aboutSection->articles as $article)
+@if ($aboutSection !== null)
+    @foreach ($aboutSection->articles as $article)
                     <a href="{{ $article->link() }}">{{ $article->headline }}</a>
-@endforeach
+    @endforeach
+@endif
             </nav>
 
             <section class="imprint">
