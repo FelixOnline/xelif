@@ -1,0 +1,22 @@
+name: CI
+
+on: push
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v5
+        with:
+          php_version: 7.3
+      - name: Set up mysql
+        run: |
+          sudo systemctl start mysql.service
+          mysql -uroot -proot -e "CREATE DATABASE laravel"
+      - name: Run tests
+        run: |
+          cp .env.example .env
+          DB_PASSWORD=root vendor/bin/phpunit
+
