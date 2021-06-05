@@ -9,10 +9,11 @@ use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model implements Sortable
 {
-    use HasBlocks, HasSlug, HasMedias, HasRevisions, HasPosition;
+    use HasBlocks, HasSlug, HasMedias, HasRevisions, HasPosition, HasFactory;
 
     protected $fillable = [
         'published',
