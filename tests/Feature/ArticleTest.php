@@ -22,4 +22,11 @@ class ArticleTest extends TestCase
         ])->create();
         $this->assertEmpty($article->where('id', $article->id)->published()->get());
     }
+
+    public function test_issueless_article_always_published()
+    {
+        $article = Article::factory()->published(true)->create();
+        $this->assertNull($article->issue);
+        $this->assertNotEmpty($article->where('id', $article->id)->published()->get());
+    }
 }

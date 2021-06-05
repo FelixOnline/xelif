@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Article;
 use App\Models\Section;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArticleFactory extends Factory
+class SectionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Article::class;
+    protected $model = Section::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +22,12 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            'headline' => $this->faker->text(100),
-            'lede' => $this->faker->text,
             'published' => true,
-            'section_id'=> Section::factory()
+            'title' => $this->faker->text(10),
+            'description' => $this->faker->text(20),
+            'current' => true,
+            'email' => $this->faker->email,
+            'colour' => $this->faker->hexColor
         ];
     }
 

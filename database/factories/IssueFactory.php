@@ -23,6 +23,7 @@ class IssueFactory extends Factory
     {
         return [
             'issue' => $this->faker->numberBetween(0, 9999),
+            'published' => true
         ];
     }
 
