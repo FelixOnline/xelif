@@ -19,4 +19,8 @@ jobs:
         run: |
           cp .env.example .env
           DB_PASSWORD=root vendor/bin/phpunit
-
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: laravel log
+          path: storage/logs/laravel.log
