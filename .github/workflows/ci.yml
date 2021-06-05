@@ -18,6 +18,7 @@ jobs:
       - name: Run tests
         run: |
           cp .env.example .env
+          php artisan key:generate
           DB_PASSWORD=root vendor/bin/phpunit
       - uses: actions/upload-artifact@v2
         if: failure()
