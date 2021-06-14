@@ -68,6 +68,7 @@ class ArticleController extends GatedModuleController
         return [
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
             'issues' => app()->make(\App\Repositories\IssueRepository::class)->listAll('issue')->sortDesc(),
+            'editableTitle' => false,
         ];
     }
 
