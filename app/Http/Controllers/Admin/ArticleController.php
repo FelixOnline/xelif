@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\SettingsController;
+use App\Models\Issue;
+use App\Repositories\IssueRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
 class ArticleController extends GatedModuleController
 {
-    public function __construct(\App\Http\Controllers\SettingsController $settings,
-                                Application $app,
-                                Request $request)
+    public function __construct(SettingsController $settings,
+                                Application        $app,
+                                Request            $request)
     {
         parent::__construct($app, $request);
         $this->settings = $settings;
@@ -24,6 +27,8 @@ class ArticleController extends GatedModuleController
     protected $indexOptions = [
         'reorder' => true,
     ];
+
+    private const LATEST_ISSUE_FILTER_VALUE = -1;
 
     protected $indexColumns = [
         'headline' => [
@@ -47,7 +52,7 @@ class ArticleController extends GatedModuleController
         'issue' => 'issue_id',
     ];
 
-    protected $filtersDefaultOptions = ['issue' => -1];
+    protected $filtersDefaultOptions = ['issue' => self::LATEST_ISSUE_FILTER_VALUE];
 
     protected function previewData($item)
     {
@@ -67,7 +72,7 @@ class ArticleController extends GatedModuleController
     {
         return [
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
-            'issues' => app()->make(\App\Repositories\IssueRepository::class)->listAll('issue')->sortDesc(),
+            'issues' => app()->make(IssueRepository::class)->listAll('issue')->sortDesc(),
             'editableTitle' => false,
         ];
     }
@@ -78,7 +83,7 @@ class ArticleController extends GatedModuleController
             'issueList' => array_merge(
             [
                 ['value' => 0, 'label' => 'Cross-site'],
-                ['value' => -1, 'label' => 'Latest Issue'],
+                ['value' => self::LATEST_ISSUE_FILTER_VALUE, 'label' => 'Latest Issue'],
             ],
             $this->getIssueFilterEntries()),
         ];
@@ -86,11 +91,25 @@ class ArticleController extends GatedModuleController
 
     protected function getIssueFilterEntries() : Array
     {
-        return app(\App\Repositories\IssueRepository::class)
+        return app(IssueRepository::class)
                 ->listAllForceOrder('issue', ['issue' => 'DESC'])
                 ->map(function($value, $key) {
                     return ['value' => $key, 'label' => "Issue $value"];
                 })
                 ->toArray();
     }
+
+    protected function filterScope($prepend = [])
+    {
+        $scope = parent::filterScope($prepend);
+        if ($scope['issue_id'] == self::LATEST_ISSUE_FILTER_VALUE) {
+            // here we translate it to the actual latest issue id
+            $scope['issue_id'] = app(IssueRepository::class)
+                ->order(Issue::query(), ['issue' => 'DESC'])
+                ->first()
+                ->id;
+        }
+        return $scope;
+    }
+
 }
