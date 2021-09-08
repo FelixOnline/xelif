@@ -20,7 +20,12 @@ return [
                 'component' => 'a17-block-sidebar',
             ],
             'review' => [
-                'title' => 'Review',
+                'title' => 'Drama Review',
+                'icon' => 'star-feature',
+                'component' => 'a17-block-review',
+            ],
+            'book-review' => [
+                'title' => 'Book Review',
                 'icon' => 'star-feature',
                 'component' => 'a17-block-review',
             ],

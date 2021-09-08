@@ -24,9 +24,9 @@ class IssueController extends Controller
                 ? $this->getPublished($id)
                 : $this->getLatestPublished();
 
-        return Cache::rememberForever(self::buildCacheKey($id),
-                                function() use ($issue, $singleIssue)
-        {
+//        return Cache::rememberForever(self::buildCacheKey($id),
+//                                function() use ($issue, $singleIssue)
+//        {
             return view('layouts.issue', [
                 'issue' => $issue,
                 'sections' => Section::current()->get(),
@@ -35,7 +35,7 @@ class IssueController extends Controller
                 'look' => $this->settingsController->lookAndFeel(),
                 'singleIssueView' => $singleIssue,
             ])->render();
-        });
+//        });
     }
 
     public static function buildCacheKey(?int $targetIssueId): string
