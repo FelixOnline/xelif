@@ -26,7 +26,7 @@ window.onScroll = function(e) {
 </section>
 
 <section class="overview additional-articles">
-@foreach ($newsArticles->skip(4) as $article)
+@foreach ($newsArticles->skip($featured ? 3: 4) as $article)
     <x-tease :article="$article" />
 @endforeach
 </section>
