@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Section;
 use App\Models\Article;
+use App\Models\Section;
 
 class SectionController extends Controller
 {
@@ -20,7 +20,7 @@ class SectionController extends Controller
     {
         $section = Section::forSlug($sectionSlug)->firstOrFail();
 
-        $numPages = (int) ceil($this->getArticleCount($section) / $this->articlesPerPage);
+        $numPages = (int)ceil($this->getArticleCount($section) / $this->articlesPerPage);
 
         return view('layouts.section', [
             'section' => $section,
@@ -37,8 +37,9 @@ class SectionController extends Controller
     {
         $articles = $this->getArticlesQueryStub($section);
 
-        if ($page)
+        if ($page) {
             $articles->offset(($page - 1) * $this->articlesPerPage);
+        }
 
         return $articles->with('writers')->limit($this->articlesPerPage)->get();
     }
@@ -46,7 +47,7 @@ class SectionController extends Controller
     protected function getArticlesQueryStub(Section $section)
     {
         return Article::where('section_id', $section->id)
-                        ->scopes(['published', 'visible'])->ordered();
+            ->scopes(['published', 'visible'])->ordered();
     }
 
     protected function getArticleCount(Section $section)

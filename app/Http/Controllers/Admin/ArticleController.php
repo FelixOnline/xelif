@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 
 class ArticleController extends GatedModuleController
 {
-    public function __construct(SettingsController $settings,
-                                Application        $app,
-                                Request            $request)
-    {
+    public function __construct(
+        SettingsController $settings,
+        Application $app,
+        Request $request
+    ) {
         parent::__construct($app, $request);
         $this->settings = $settings;
     }
@@ -81,22 +82,23 @@ class ArticleController extends GatedModuleController
     {
         return [
             'issueList' => array_merge(
-            [
-                ['value' => 0, 'label' => 'Cross-site'],
-                ['value' => self::LATEST_ISSUE_FILTER_VALUE, 'label' => 'Latest Issue'],
-            ],
-            $this->getIssueFilterEntries()),
+                [
+                    ['value' => 0, 'label' => 'Cross-site'],
+                    ['value' => self::LATEST_ISSUE_FILTER_VALUE, 'label' => 'Latest Issue'],
+                ],
+                $this->getIssueFilterEntries()
+            ),
         ];
     }
 
-    protected function getIssueFilterEntries() : Array
+    protected function getIssueFilterEntries(): array
     {
         return app(IssueRepository::class)
-                ->listAllForceOrder('issue', ['issue' => 'DESC'])
-                ->map(function($value, $key) {
-                    return ['value' => $key, 'label' => "Issue $value"];
-                })
-                ->toArray();
+            ->listAllForceOrder('issue', ['issue' => 'DESC'])
+            ->map(function ($value, $key) {
+                return ['value' => $key, 'label' => "Issue $value"];
+            })
+            ->toArray();
     }
 
     protected function filterScope($prepend = [])

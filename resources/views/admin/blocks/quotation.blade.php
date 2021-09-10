@@ -1,4 +1,4 @@
 @formField('wysiwyg', [
-    'name' => 'html',
-    'label' => 'Quotation text',
+'name' => 'html',
+'label' => 'Quotation text',
 ])

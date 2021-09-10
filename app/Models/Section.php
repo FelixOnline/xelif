@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,16 +41,18 @@ class Section extends Model implements Sortable
 
     public function link($page = null)
     {
-        return route('section' . ($page ? ".page" : ""),
-                        [$this->getSlug(), $page]);
+        return route(
+            'section' . ($page ? ".page" : ""),
+            [$this->getSlug(), $page]
+        );
     }
 
     public function next()
     {
         return Section::where('position', '>', $this->position)
-                        ->where('id', '!=', $this->id)
-                        ->where('current', 1)
-                        ->first();
+            ->where('id', '!=', $this->id)
+            ->where('current', 1)
+            ->first();
     }
 
     public function scopeCurrent($query)
@@ -60,8 +62,10 @@ class Section extends Model implements Sortable
 
     public function loadArticleCount()
     {
-        $this->load(['articles_count' => function($q) {
-            $q->scopes(['published', 'visible']);
-        }]);
+        $this->load([
+            'articles_count' => function ($q) {
+                $q->scopes(['published', 'visible']);
+            }
+        ]);
     }
 }

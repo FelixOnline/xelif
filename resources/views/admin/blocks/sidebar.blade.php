@@ -1,10 +1,10 @@
 @formField('input', [
-    'name' => 'title',
-    'label' => 'Title',
+'name' => 'title',
+'label' => 'Title',
 ])
 
 @formField('wysiwyg', [
-    'name' => 'html',
-    'type' => 'wysiwyg',
-    'label' => 'Sidebar text',
+'name' => 'html',
+'type' => 'wysiwyg',
+'label' => 'Sidebar text',
 ])

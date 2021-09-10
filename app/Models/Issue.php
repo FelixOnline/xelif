@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,12 +33,13 @@ class Issue extends Model implements Sortable
         return $this->hasMany(\App\Models\Article::class);
     }
 
-    public function maybeArticle($section, $index) : ?Article
+    public function maybeArticle($section, $index): ?Article
     {
         $this->buildArticleLookupFromSlug($section);
 
-        if (count($this->articleLookup[$section]) <= $index)
+        if (count($this->articleLookup[$section]) <= $index) {
             return null;
+        }
 
         return $this->articleLookup[$section][$index];
     }
@@ -60,32 +61,35 @@ class Issue extends Model implements Sortable
      *                              must not be null. If FALSE, no bulking with prior
      *                              issue articles will be performed.
      */
-    public function articleRange($section,
-                                    $begin = null,
-                                    $count = null,
-                                    $fillBreak = false)
-    {
+    public function articleRange(
+        $section,
+        $begin = null,
+        $count = null,
+        $fillBreak = false
+    ) {
         $this->buildArticleLookupFromSlug($section);
 
-        if (!isset($this->articleLookup[$section]))
+        if (!isset($this->articleLookup[$section])) {
             return [];
+        }
 
         $collection = $this->articleLookup[$section];
 
-        if ($begin)
+        if ($begin) {
             $collection = $collection->skip($begin);
+        }
 
-        if ($count != null)
+        if ($count != null) {
             $collection = $collection->take($count);
+        }
 
-        if ($fillBreak === true)
+        if ($fillBreak === true) {
             $fillBreak = $count;
+        }
 
-        if ($fillBreak)
-        {
+        if ($fillBreak) {
             $rem = count($collection) % $fillBreak;
-            if ($rem != 0 || count($collection) === 0)
-            {
+            if ($rem != 0 || count($collection) === 0) {
                 $needed = $fillBreak - $rem;
 
                 $additionalArticles =
@@ -101,16 +105,17 @@ class Issue extends Model implements Sortable
 
     protected function buildArticleLookupFromSlug($sectionSlug)
     {
-        if (!isset($this->articleLookup[$sectionSlug]))
+        if (!isset($this->articleLookup[$sectionSlug])) {
             $this->articleLookup[$sectionSlug] = $this->buildArticleLookup(Section::forSlug($sectionSlug)->first());
+        }
     }
 
     protected function buildArticleLookup(Section $section)
     {
         return $this->article()->published()->visible()
-                ->where('section_id', $section->id)
-                ->orderBy('position')
-                ->limit(20)
-                ->get();
+            ->where('section_id', $section->id)
+            ->orderBy('position')
+            ->limit(20)
+            ->get();
     }
 }

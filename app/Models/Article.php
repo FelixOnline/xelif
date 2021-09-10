@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use A17\Twill\Models\Behaviors\HasBlocks;
-use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
-use A17\Twill\Models\Behaviors\HasRevisions;
 use A17\Twill\Models\Behaviors\HasPosition;
+use A17\Twill\Models\Behaviors\HasRevisions;
+use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -85,9 +85,11 @@ class Article extends Model implements Sortable
 
     public static function inBucket($bucketKey)
     {
-        return Article::with(['buckets' => function($q) {
-            $q->orderBy('position');
-        }])->whereHas('buckets', function($q) use ($bucketKey) {
+        return Article::with([
+            'buckets' => function ($q) {
+                $q->orderBy('position');
+            }
+        ])->whereHas('buckets', function ($q) use ($bucketKey) {
             $q->where('bucket_key', $bucketKey);
         })->get();
     }

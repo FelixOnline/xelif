@@ -3,17 +3,15 @@
 namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleBlocks;
-use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\Behaviors\HandleMedias;
 use A17\Twill\Repositories\Behaviors\HandleRevisions;
+use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
+use App\Http\Controllers\IssueController;
+use App\Models\Article;
 use App\Models\ArticleView;
 use Carbon\Carbon;
-
-use App\Models\Article;
-use App\Http\Controllers\IssueController;
 use Illuminate\Support\Facades\Cache;
-use Ramsey\Uuid\Uuid;
 
 class ArticleRepository extends ModuleRepository
 {
@@ -28,26 +26,29 @@ class ArticleRepository extends ModuleRepository
     {
         parent::beforeSave($object, $fields);
 
-        if (isset($fields['issue_id']) && $object->issue_id !== null && $fields['issue_id'] !== $object->issue_id)
+        if (isset($fields['issue_id']) && $object->issue_id !== null && $fields['issue_id'] !== $object->issue_id) {
             IssueController::clearCache($object->issue_id);
-
+        }
     }
 
     public function afterSave($object, $fields)
     {
         parent::afterSave($object, $fields);
 
-        if (isset($fields['section_id']))
+        if (isset($fields['section_id'])) {
             $object->section_id = $fields['section_id'];
+        }
 
-        if (isset($fields['issue_id']))
+        if (isset($fields['issue_id'])) {
             $object->issue_id = $fields['issue_id'];
+        }
 
         $this->updateBrowser($object, $fields, 'writers');
         $object->save();
 
-        if ($object->issue_id !== null)
+        if ($object->issue_id !== null) {
             IssueController::clearCache($object->issue_id);
+        }
     }
 
     public function getFormFields($object)
@@ -61,32 +62,31 @@ class ArticleRepository extends ModuleRepository
 
     public function filter($query, $scopes = [])
     {
-        if (isset($scopes['issue_id']) && $scopes['issue_id'] == -1)
-        {
+        if (isset($scopes['issue_id']) && $scopes['issue_id'] == -1) {
             unset($scopes['issue_id']);
-            $query->where('issue_id', function($q)
-            {
+            $query->where('issue_id', function ($q) {
                 $q->from('issues')->select('id')->orderBy('issue', 'DESC')->limit(1);
             });
-        }
-        else if (isset($scopes['issue_id']) && $scopes['issue_id'] == 0)
-        {
-            unset($scopes['issue_id']);
-            $query->where('issue_id', null);
+        } else {
+            if (isset($scopes['issue_id']) && $scopes['issue_id'] == 0) {
+                unset($scopes['issue_id']);
+                $query->where('issue_id', null);
+            }
         }
 
         return parent::filter($query, $scopes);
     }
 
-    public function getAdditionalArticles(\App\Models\Issue $priorToIssue,
-                                            \App\Models\Section $section,
-                                            $count)
-    {
+    public function getAdditionalArticles(
+        \App\Models\Issue $priorToIssue,
+        \App\Models\Section $section,
+        $count
+    ) {
         $query = $this->model->newQuery();
 
-        $query->whereHas('section', function($q) use ($section) {
+        $query->whereHas('section', function ($q) use ($section) {
             $q->where('id', $section->id);
-        })->whereHas('issue', function($q) use ($priorToIssue) {
+        })->whereHas('issue', function ($q) use ($priorToIssue) {
             $q->where('issue', '<', $priorToIssue->issue)
                 ->published();
         })->published()->ordered()->limit($count);
@@ -94,7 +94,8 @@ class ArticleRepository extends ModuleRepository
         return $query->get();
     }
 
-    public function getTopStories() {
+    public function getTopStories()
+    {
         return Cache::remember(
             'top stories',
             3600 * 24,
@@ -104,10 +105,10 @@ class ArticleRepository extends ModuleRepository
                     ->groupBy('article_id');
 
                 return $this->model->published()->visible()
-                        ->joinSub($views, 'views', function ($join) {
-                            $join->on('articles.id', '=', 'views.article_id');
-                        })
-                        ->orderByDesc('view_count')->limit(5)->get();
+                    ->joinSub($views, 'views', function ($join) {
+                        $join->on('articles.id', '=', 'views.article_id');
+                    })
+                    ->orderByDesc('view_count')->limit(5)->get();
             }
         );
     }

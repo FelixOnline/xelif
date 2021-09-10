@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Issue;
 use App\Models\Article;
 use App\Models\ArticleView;
+use App\Models\Issue;
 use App\Models\Section;
 use App\Repositories\ArticleRepository;
 
@@ -22,10 +22,10 @@ class ArticleController extends Controller
         $issue = Issue::forSlug($issue)->scopes(['published', 'visible'])->firstOrFail();
         $section = Section::forSlug($section)->firstOrFail();
         $article = Article::forSlug($slug)
-                            ->scopes(['published', 'visible'])
-                            ->where('issue_id', $issue->id)
-                            ->where('section_id', $section->id)
-                            ->firstOrFail();
+            ->scopes(['published', 'visible'])
+            ->where('issue_id', $issue->id)
+            ->where('section_id', $section->id)
+            ->firstOrFail();
         return $this->showCore($issue, $section, $article);
     }
 
@@ -33,9 +33,9 @@ class ArticleController extends Controller
     {
         $section = Section::forSlug($section)->firstOrFail();
         $article = Article::forSlug($slug)
-                    ->scopes(['published', 'visible'])
-                    ->where('section_id', $section->id)
-                    ->firstOrFail();
+            ->scopes(['published', 'visible'])
+            ->where('section_id', $section->id)
+            ->firstOrFail();
 
         return $this->showCore(null, $section, $article);
     }
@@ -44,17 +44,19 @@ class ArticleController extends Controller
     {
         ArticleView::createViewRecord($articleId);
         return response(base64_decode('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='))
-                ->header('Content-Type', 'image/gif');
+            ->header('Content-Type', 'image/gif');
     }
 
     protected function showCore($issue, $section, $article)
     {
         $top = app(ArticleRepository::class)
             ->getTopStories()
-            ->reject(function ($item) use ($article) {return $item->id == $article->id;});
+            ->reject(function ($item) use ($article) {
+                return $item->id == $article->id;
+            });
 
         return view('layouts.article', [
-            'article'=> $article,
+            'article' => $article,
             'issue' => $issue,
             'section' => $section,
             'sections' => Section::current()->get(),
@@ -65,40 +67,45 @@ class ArticleController extends Controller
         ]);
     }
 
-    protected function getContinueReading(?Issue $issue,
-                                            Article $article,
-                                            Section $section,
-                                            $top)
-    {
-        if (!$issue)
+    protected function getContinueReading(
+        ?Issue $issue,
+        Article $article,
+        Section $section,
+        $top
+    ) {
+        if (!$issue) {
             return [];
+        }
 
         $need = 3;
-        $topMap = $top->mapWithKeys(function($item) { return [$item->id => true]; });
-        $isTop = function($item) use ($topMap) {
+        $topMap = $top->mapWithKeys(function ($item) {
+            return [$item->id => true];
+        });
+        $isTop = function ($item) use ($topMap) {
             return isset($topMap[$item->id]);
         };
 
         $nextInSection = $article->where('issue_id', $issue->id)
-                                 ->where('section_id', $section->id)
-                                 ->where('position', '>', $article->position)
-                                 ->published()
-                                 ->orderBy('position')
-                                 ->get();
+            ->where('section_id', $section->id)
+            ->where('position', '>', $article->position)
+            ->published()
+            ->orderBy('position')
+            ->get();
 
 
         $interestingNext = $nextInSection->reject($isTop)->take($need);
 
-        for ($i = 0, $nextSection = $section->next();
-                $i < 6 && count($interestingNext) < $need && $nextSection != null;
-                $i++, $nextSection = $nextSection->next())
-        {
+        for (
+            $i = 0, $nextSection = $section->next();
+            $i < 6 && count($interestingNext) < $need && $nextSection != null;
+            $i++, $nextSection = $nextSection->next()
+        ) {
             $articles = Article::where('issue_id', $issue->id)
-                                ->where('section_id', $nextSection->id)
-                                ->published()
-                                ->orderBy('position')
-                                ->limit($need - count($interestingNext))
-                                ->get();
+                ->where('section_id', $nextSection->id)
+                ->published()
+                ->orderBy('position')
+                ->limit($need - count($interestingNext))
+                ->get();
 
             $interestingNext = $interestingNext->concat(
                 $articles->reject($isTop)

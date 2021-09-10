@@ -37,13 +37,17 @@ class GatedModuleController extends ModuleController
             if ($input['published']) {
                 // We are make the item live, along with whatever change we have made. Block
                 return $this->respondWithError(
-                    $this->modelTitle . ' was not published. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
+                    $this->modelTitle . ' was not published. You do not have the permission to make live changes to ' . strtolower(
+                        $this->moduleName
+                    )
                 );
             } else {
                 if ($item->published) {
                     // we are trying to unpubish a published item. Block
                     return $this->respondWithError(
-                        $this->modelTitle . ' was not unpublished. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
+                        $this->modelTitle . ' was not unpublished. You do not have the permission to make live changes to ' . strtolower(
+                            $this->moduleName
+                        )
                     );
                 }
                 // We are editing a draft, allow.
@@ -62,7 +66,9 @@ class GatedModuleController extends ModuleController
             if ($item->published) {
                 // Otherwise, we don't allow the deletion of a live item
                 return $this->respondWithError(
-                    $this->modelTitle . ' was not deleted. You do not have the permission to make live changes to ' . strtolower($this->moduleName)
+                    $this->modelTitle . ' was not deleted. You do not have the permission to make live changes to ' . strtolower(
+                        $this->moduleName
+                    )
                 );
             } else {
                 // But we allow the deletion of a draft item

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use A17\Twill\Models\Enums\UserRole;
 use A17\Twill\AuthServiceProvider as ServiceProvider;
+use A17\Twill\Models\Enums\UserRole;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -92,6 +92,5 @@ class AuthServiceProvider extends ServiceProvider
                 return $this->userHasRole($user, UserRole::values());
             });
         });
-
     }
 }

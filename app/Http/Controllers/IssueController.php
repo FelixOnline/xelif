@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Repositories\ArticleRepository;
-use Illuminate\Support\Facades\Cache;
-
 use App\Models\Issue;
 use App\Models\Section;
+use App\Repositories\ArticleRepository;
+use Illuminate\Support\Facades\Cache;
 
 class IssueController extends Controller
 {
@@ -22,22 +21,22 @@ class IssueController extends Controller
     {
         $singleIssue = $id != null;
         $issue = $singleIssue
-                ? $this->getPublished($id)
-                : $this->getLatestPublished();
+            ? $this->getPublished($id)
+            : $this->getLatestPublished();
         $featured = $singleIssue ? null : Article::inBucket('featured')->first();
 
 //        return Cache::rememberForever(self::buildCacheKey($id),
 //                                function() use ($issue, $singleIssue)
 //        {
-            return view('layouts.issue', [
-                'issue' => $issue,
-                'sections' => Section::current()->get(),
-                'aboutSection' => Section::forSlug('about')->first(),
-                'topStories' => app(ArticleRepository::class)->getTopStories(),
-                'featured' => $featured,
-                'look' => $this->settingsController->lookAndFeel(),
-                'singleIssueView' => $singleIssue,
-            ])->render();
+        return view('layouts.issue', [
+            'issue' => $issue,
+            'sections' => Section::current()->get(),
+            'aboutSection' => Section::forSlug('about')->first(),
+            'topStories' => app(ArticleRepository::class)->getTopStories(),
+            'featured' => $featured,
+            'look' => $this->settingsController->lookAndFeel(),
+            'singleIssueView' => $singleIssue,
+        ])->render();
 //        });
     }
 

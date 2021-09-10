@@ -3,11 +3,9 @@
 namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
-use A17\Twill\Repositories\Behaviors\HandleRepeaters;
 use A17\Twill\Repositories\ModuleRepository;
-
-use App\Models\Issue;
 use App\Http\Controllers\IssueController;
+use App\Models\Issue;
 
 class IssueRepository extends ModuleRepository
 {
@@ -41,11 +39,13 @@ class IssueRepository extends ModuleRepository
     {
         $query = $this->model->newQuery();
 
-        if (!empty($orders))
+        if (!empty($orders)) {
             $query = $this->order($query, $orders);
+        }
 
-        if ($this->model->isTranslatable())
+        if ($this->model->isTranslatable()) {
             $query = $query->withTranslation();
+        }
 
         return $query->get()->pluck($column, 'id');
     }

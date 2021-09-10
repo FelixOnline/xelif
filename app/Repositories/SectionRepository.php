@@ -4,8 +4,8 @@ namespace App\Repositories;
 
 use A17\Twill\Repositories\Behaviors\HandleSlugs;
 use A17\Twill\Repositories\ModuleRepository;
-use App\Models\Section;
 use App\Http\Controllers\IssueController;
+use App\Models\Section;
 
 class SectionRepository extends ModuleRepository
 {

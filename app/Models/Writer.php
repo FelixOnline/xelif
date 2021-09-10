@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\HasMedias;
+use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Model;
 
-class Writer extends Model 
+class Writer extends Model
 {
     use HasSlug, HasMedias;
 
@@ -17,11 +17,11 @@ class Writer extends Model
         'bio',
         'current',
     ];
-    
+
     public $slugAttributes = [
         'name',
     ];
-    
+
     public $mediasParams = [
         'cover' => [
             'desktop' => [

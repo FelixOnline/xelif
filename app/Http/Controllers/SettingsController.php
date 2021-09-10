@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use A17\Twill\Repositories\SettingRepository;
 use A17\Twill\Models\Setting;
+use A17\Twill\Repositories\SettingRepository;
 
 class SettingsController extends Controller
 {
@@ -23,9 +23,9 @@ class SettingsController extends Controller
     {
         // with('translations') here is to avoid the N+1 problem as access to $setting->value requires a query
         // to setting_translations table
-        return  $this->repository->where('section', $sectionName)->with('translations')->get()
-                     ->mapWithKeys(function(Setting $setting) {
-                         return [$setting->key => $setting->value];
-                     });
+        return $this->repository->where('section', $sectionName)->with('translations')->get()
+            ->mapWithKeys(function (Setting $setting) {
+                return [$setting->key => $setting->value];
+            });
     }
 }

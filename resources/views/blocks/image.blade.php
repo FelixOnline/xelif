@@ -5,8 +5,8 @@
 @endphp
 <figure>
     <img src="{{ $block->image('image', 'flexible') }}"
-            alt="{{ $block->imageAltText('image') }}" />
-            <?php $caption = $block->imageCaption('image'); ?>
+         alt="{{ $block->imageAltText('image') }}"/>
+    <?php $caption = $block->imageCaption('image'); ?>
     @if ($credit)
         <span class="credit">Photo: {{ $credit }}</span>
     @endif
