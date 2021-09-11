@@ -14,6 +14,9 @@ class SiteTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
+    protected $newsSection = null;
+    protected $aboutSection = null;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -44,8 +47,8 @@ class SiteTest extends TestCase
             ]);
         });
 
-        Section::factory()->create(['title' => 'News']);
-        Section::factory()->create(['title' => 'About']);
+        $this->newsSection = Section::factory()->create(['title' => 'News']);
+        $this->aboutSection = Section::factory()->create(['title' => 'About']);
     }
 
 }
