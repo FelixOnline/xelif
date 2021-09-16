@@ -20,7 +20,7 @@ return [
                 'component' => 'a17-block-sidebar',
             ],
             'review' => [
-                'title' => 'Drama Review',
+                'title' => 'Theatre Review',
                 'icon' => 'star-feature',
                 'component' => 'a17-block-review',
             ],
