@@ -59,7 +59,7 @@ class ArticleController extends Controller
             'article' => $article,
             'issue' => $issue,
             'section' => $section,
-            'sections' => Section::current()->get(),
+            'sections' => Section::current()->ordered()->get(),
             'aboutSection' => Section::forSlug('about')->first(),
             'topStories' => $top,
             'continueReading' => $this->getContinueReading($issue, $article, $section, $top),

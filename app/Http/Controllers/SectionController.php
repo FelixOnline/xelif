@@ -24,7 +24,7 @@ class SectionController extends Controller
 
         return view('layouts.section', [
             'section' => $section,
-            'sections' => Section::current()->get(),
+            'sections' => Section::current()->ordered()->get(),
             'aboutSection' => Section::forSlug('about')->first(),
             'articles' => $this->getArticles($section, $page),
             'page' => $page ?? 1,

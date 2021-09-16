@@ -30,7 +30,7 @@ class IssueController extends Controller
 //        {
         return view('layouts.issue', [
             'issue' => $issue,
-            'sections' => Section::current()->get(),
+            'sections' => Section::current()->ordered()->get(),
             'aboutSection' => Section::forSlug('about')->first(),
             'topStories' => app(ArticleRepository::class)->getTopStories(),
             'featured' => $featured,
