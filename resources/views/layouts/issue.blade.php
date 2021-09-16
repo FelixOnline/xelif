@@ -11,7 +11,7 @@
 
 @section('body')
     @php
-        $newsArticles = $issue->articleRange('news', null, 8, !$singleIssueView);
+        $newsArticles = $issue->articleRange('news', null, $featured ? 7 : 8, !$singleIssueView);
     @endphp
     <section class="overview headlines">
         @if ($featured)
