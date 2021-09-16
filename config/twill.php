@@ -27,7 +27,7 @@ return [
             'book-review' => [
                 'title' => 'Book Review',
                 'icon' => 'star-feature',
-                'component' => 'a17-block-review',
+                'component' => 'a17-block-book-review',
             ],
         ],
         'block_views_path' => 'blocks',
