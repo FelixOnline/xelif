@@ -494,7 +494,7 @@ footer .imprint p
 {
     line-height: 1.8em;
     margin-right: 2.5rem;
-    font-size: 1.05em;
+    font-size: 1.25em;
     margin: 1em 2.5rem 1.3rem 0;
 }
 
@@ -507,25 +507,9 @@ footer .imprint p
     color: #444;
 }
 
-.full > article > p:first-of-type
-{
-    font-size: 1.25em;
-}
-
 .full > article > p b
 {
     font-weight: unset;
-}
-
-.full > article > p:first-of-type b
-{
-    font-weight: unset;
-    font-variant: small-caps;
-}
-
-.full > article > p:nth-of-type(2)
-{
-    font-size: 1.15em;
 }
 
 .full > article > p:last-of-type::after
@@ -1262,7 +1246,7 @@ section.review dd
     {
         margin-right: 24%;
         line-height: 1.85em;
-        font-size: 1.05em;
+        font-size: 1.25em;
     }
 
     .full section.top-stories
