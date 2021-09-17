@@ -1244,7 +1244,6 @@ section.review dd
 
     .full > article > p
     {
-        margin-right: 24%;
         line-height: 1.85em;
         font-size: 1.25em;
     }
@@ -1337,7 +1336,7 @@ section.review dd
 
     .full > article figure
     {
-        margin: 2rem 24% 2rem -8%;
+        margin: 2rem 0 2rem 0;
     }
 
     section.review
