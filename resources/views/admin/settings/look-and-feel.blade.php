@@ -74,21 +74,6 @@
     ])
 
     @formField('input', [
-    'name' => 'maxAttention',
-    'type' => 'number',
-    'label' => 'Max article attention style length',
-    'default' => 40,
-    'note' => 'Opening sentence emphasis will stop at the last word in this character limit',
-    ])
-
-    @formField('input', [
-    'name' => 'attentionPunctuationSplit',
-    'label' => 'Article attention punctuation splits',
-    'default' => '?!,.;:"',
-    'note' => 'Opening sentence emphasis will stop at any of these characters',
-    ])
-
-    @formField('input', [
     'name' => 'instagram',
     'label' => 'Instagram Account',
     'default' => 'felix_imperial',

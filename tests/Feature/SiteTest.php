@@ -35,8 +35,6 @@ class SiteTest extends TestCase
                 'postcode' => $this->faker->postcode,
                 'telephone' => $this->faker->phoneNumber,
                 'copyright' => $this->faker->text(30),
-                'maxAttention' => 40,
-                'attentionPunctuationSplit' => '?!,.;:"',
                 'instagram' => 'felix_imperial',
                 'twitter' => 'feliximperial',
                 'facebook' => 'FelixImperial',
