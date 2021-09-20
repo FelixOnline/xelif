@@ -47,6 +47,18 @@ class Article extends Model implements Sortable
                 ],
             ],
         ],
+        'thumbnail' => [
+            'fixed' => [
+                [
+                    'name' => 'landscape',
+                    'ratio' => 4 / 3,
+                ],
+                [
+                    'name' => 'portrait (posters & covers only)',
+                    'ratio' => 3 / 5,
+                ],
+            ],
+        ]
     ];
 
     // Articles are almost always fetched these models

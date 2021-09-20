@@ -38,6 +38,12 @@
     ])
 
     @formField('medias', [
+    'name' => 'thumbnail',
+    'label' => 'Thumbnail',
+    'required' => true,
+    ])
+
+    @formField('medias', [
     'name' => 'main',
     'label' => 'Main Image',
     ])

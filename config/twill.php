@@ -33,6 +33,7 @@ return [
         'block_views_path' => 'blocks',
         'block_single_layout' => 'admin/block-preview',
         'crops' => [
+            // This controls the crop options of an "Image" block
             'image' => [
                 'flexible' => [
                     [
