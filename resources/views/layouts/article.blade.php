@@ -93,7 +93,7 @@
             <section class="continue">
                 <h1>Also in this issue...</h1>
                 @foreach ($continueReading as $nextArticle)
-                    <x-tease :article="$nextArticle"/>
+                    <x-tease :article="$nextArticle" :section="true"/>
                 @endforeach
             </section>
         @endif

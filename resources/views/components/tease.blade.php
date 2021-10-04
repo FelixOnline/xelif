@@ -1,6 +1,6 @@
 @props([
 'article',
-'section' => true,
+'section' => false,
 'image' => false,
 'imageWidth' => 0,
 'lede' => true,
@@ -12,7 +12,6 @@
             @if ($section)
                 <p class="section">{{ $article->section->title }}</p>
             @endif
-            <h1>{{ $article->headline }}</h1>
             @if ($image)
                 @if ($article->hasImage('thumbnail', 'fixed'))
                     <img src="{{ $article->image('thumbnail', 'fixed', $imageWidth ? ['w'=>$imageWidth] : []) }}"
@@ -24,6 +23,7 @@
                          loading="lazy"/>
                 @endif
             @endif
+            <h1>{{ $article->headline }}</h1>
             @if ($lede)
                 <p>{{ $article->lede }}</p>
             @endif
