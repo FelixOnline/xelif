@@ -17,6 +17,10 @@ return [
         'title' => 'Writers',
         'module' => true,
     ],
+    'articleUpload' => [
+        'title' => 'Upload Article',
+        'route' => 'admin.uploader',
+    ],
     'featured' => [
         'title' => 'Featured',
         'route' => 'admin.featured.homepage',
