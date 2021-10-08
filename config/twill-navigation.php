@@ -18,7 +18,7 @@ return [
         'module' => true,
     ],
     'articleUpload' => [
-        'title' => 'Upload Article',
+        'title' => 'Upload From Word (Experimental)',
         'route' => 'admin.uploader',
     ],
     'featured' => [

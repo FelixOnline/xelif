@@ -15,7 +15,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "jaybizzle/laravel-crawler-detect": "1.*",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "ext-dom": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
