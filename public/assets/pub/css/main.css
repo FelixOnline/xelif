@@ -511,12 +511,6 @@ footer .imprint p
     font-weight: unset;
 }
 
-.full > article > p:last-of-type::after
-{
-    padding-left: 0.7em;
-    content: "□";
-}
-
 .full > article section.meta
 {
     font-size: 1.15em;
