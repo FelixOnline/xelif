@@ -492,10 +492,9 @@ footer .imprint p
 
 .full > article > p
 {
-    line-height: 1.8em;
-    margin-right: 2.5rem;
+    line-height: 1.6em;
     font-size: 1.25em;
-    margin: 1em 2.5rem 1.3rem 0;
+    margin: 1em 0 1.3rem 0;
 }
 
 .full > article > p:first-of-type::first-letter
