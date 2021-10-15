@@ -59,9 +59,6 @@
     <section class="overview">
         <div class="section-title">
             <h2><a href="{{ $aboutSection->link() }}">{{ $aboutSection->title }}</a></h2>
-            <p><span>Editor: </span>
-                <x-name-list :writers="$dispSection->writers"/>
-            </p>
         </div>
         <p class="general-description">{{ $aboutSection->description }}</p>
         <section class="social-footer">
