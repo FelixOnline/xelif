@@ -32,6 +32,7 @@
   "dateModified": "{{ $article->updated_at }}"
 }
 
+
     </script>
 @endsection
 
@@ -82,6 +83,17 @@
                         <p class="issue">in Issue {{ $issue->issue }}</p>
                     @endif
                 </section>
+                @if ($article->dropcap)
+                    <style>
+                        .full > article > p:first-of-type::first-letter {
+                            font-size: 4em;
+                            line-height: 0.8em;
+                            float: left;
+                            margin-right: 0.1em;
+                            color: #444;
+                        }
+                    </style>
+                @endif
             </header>
             {!! $article->renderBlocks(true, [], ['look' => $look]) !!}
             <section class="social-footer">

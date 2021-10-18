@@ -48,6 +48,12 @@
     'label' => 'Main Image',
     ])
 
+    @formField('checkbox', [
+    'name' => 'dropcap',
+    'label' => 'Drop Cap',
+    'default' => true,
+    ])
+
     @formField('block_editor', [
     'blocks' => ['text', 'quotation', 'sidebar', 'image', 'review', 'book-review']
     ])

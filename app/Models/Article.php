@@ -24,6 +24,7 @@ class Article extends Model implements Sortable
         'publish_end_date',
         'section_id',
         'issue_id',
+        'dropcap',
     ];
 
     public $slugAttributes = [
