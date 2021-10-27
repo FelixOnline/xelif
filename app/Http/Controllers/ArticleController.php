@@ -40,15 +40,11 @@ class ArticleController extends Controller
         return $this->showCore(null, $section, $article);
     }
 
-    public function trackView($articleId)
-    {
-        ArticleView::createViewRecord($articleId);
-        return response(base64_decode('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='))
-            ->header('Content-Type', 'image/gif');
-    }
-
     protected function showCore($issue, $section, $article)
     {
+        if (!\Crawler::isCrawler() && $section->title !== "About") {
+            ArticleView::createViewRecord($article->id);
+        }
         $top = app(ArticleRepository::class)
             ->getTopStories()
             ->reject(function ($item) use ($article) {
