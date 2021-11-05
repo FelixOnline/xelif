@@ -17,6 +17,10 @@ return [
         'title' => 'Writers',
         'module' => true,
     ],
+    'puzzleTeams' => [
+        'title' => 'Puzzle Leaderboard',
+        'module' => true,
+    ],
     'articleUpload' => [
         'title' => 'Upload From Word (Experimental)',
         'route' => 'admin.uploader',

@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\IssueController::class, 'show'])
     ->name('home');
 
+Route::get('/puzzles', [\App\Http\Controllers\PuzzleLeaderboardController::class, 'show'])
+    ->name('puzzles');
+
 Route::get('/issue/{id}', [\App\Http\Controllers\IssueController::class, 'show'])
     ->name('issue');
 

@@ -43,7 +43,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Models/Enums/UserRole.php"
+            "app/Models/Enums/UserRole.php",
+            "app/Http/Controllers/helper.php"
         ],
         "exclude-from-classmap": ["vendor/area17/twill/src/Models/Enums/UserRole.php"]
     },
