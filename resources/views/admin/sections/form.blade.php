@@ -15,12 +15,12 @@
 
     @formField('checkbox', [
     'name' => 'current',
-    'label' => 'Current',
+    'label' => 'Current (Show on homepage)',
     ])
 
     @formField('checkbox', [
     'name' => 'featured',
-    'label' => 'Featured',
+    'label' => 'Featured (Show on navbars)',
     ])
 
     @formField('color', [
