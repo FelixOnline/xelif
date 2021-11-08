@@ -11,7 +11,7 @@
 
 @section('body')
     @php
-        $newsArticles = $issue->articleRange('news', null, $featured ? 7 : 8, !$singleIssueView);
+        $newsArticles = $issue->articleRange($newsSection, null, $featured ? 7 : 8, !$singleIssueView);
     @endphp
     <section class="overview headlines">
         @if ($featured)
@@ -31,9 +31,9 @@
         @endforeach
     </section>
 
-    @foreach ($sections->filter(function ($s) {return strtolower($s->title) !== "news";}) as $dispSection)
+    @foreach ($sections as $dispSection)
         @php
-            $sectionArticles = $issue->articleRange($dispSection->getSlug(), null, 4, !$singleIssueView);
+            $sectionArticles = $issue->articleRange($dispSection, null, 4, !$singleIssueView);
         @endphp
 
         @if (count($sectionArticles))

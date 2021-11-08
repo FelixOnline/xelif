@@ -30,8 +30,9 @@ class IssueController extends Controller
 //        {
         return view('layouts.issue', [
             'issue' => $issue,
-            'sections' => Section::current()->ordered()->get(),
-            'aboutSection' => Section::forSlug('about')->first(),
+            'sections' => Section::current()->nonSpecial()->ordered()->get(),
+            'newsSection' => Section::forTitle('News')->first(),
+            'aboutSection' => Section::forTitle('About')->first(),
             'topStories' => app(ArticleRepository::class)->getTopStories(),
             'featured' => $featured,
             'look' => $this->settingsController->lookAndFeel(),

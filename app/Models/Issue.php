@@ -33,22 +33,12 @@ class Issue extends Model implements Sortable
         return $this->hasMany(\App\Models\Article::class);
     }
 
-    public function maybeArticle($section, $index): ?Article
-    {
-        $this->buildArticleLookupFromSlug($section);
-
-        if (count($this->articleLookup[$section]) <= $index) {
-            return null;
-        }
-
-        return $this->articleLookup[$section][$index];
-    }
 
     /**
      * Gets a set of articles in this issue, or potentially from prior issues, in
      * a given section slug.
      *
-     * @param string $section The section slug for which to get articles.
+     * @param Section $section The section for which to get articles.
      * @param int|null $begin The number of articles to skip from the beginning
      *                          of the section in this issue in the returned
      *                          set of articles.
@@ -62,18 +52,12 @@ class Issue extends Model implements Sortable
      *                              issue articles will be performed.
      */
     public function articleRange(
-        $section,
+        Section $section,
         $begin = null,
         $count = null,
         $fillBreak = false
     ) {
-        $this->buildArticleLookupFromSlug($section);
-
-        if (!isset($this->articleLookup[$section])) {
-            return [];
-        }
-
-        $collection = $this->articleLookup[$section];
+        $collection = $this->buildArticleLookup($section);
 
         if ($begin) {
             $collection = $collection->skip($begin);
@@ -94,7 +78,7 @@ class Issue extends Model implements Sortable
 
                 $additionalArticles =
                     app(\App\Repositories\ArticleRepository::class)
-                        ->getAdditionalArticles($this, Section::forSlug($section)->first(), $needed);
+                        ->getAdditionalArticles($this, $section, $needed);
 
                 $collection = $collection->concat($additionalArticles);
             }
@@ -103,19 +87,16 @@ class Issue extends Model implements Sortable
         return $collection;
     }
 
-    protected function buildArticleLookupFromSlug($sectionSlug)
-    {
-        if (!isset($this->articleLookup[$sectionSlug])) {
-            $this->articleLookup[$sectionSlug] = $this->buildArticleLookup(Section::forSlug($sectionSlug)->first());
-        }
-    }
 
     protected function buildArticleLookup(Section $section)
     {
-        return $this->article()->published()->visible()
-            ->where('section_id', $section->id)
-            ->orderBy('position')
-            ->limit(20)
-            ->get();
+        if (!isset($this->articleLookup[$section->id])) {
+            $this->articleLookup[$section->id] = $this->article()->published()->visible()
+                ->where('section_id', $section->id)
+                ->orderBy('position')
+                ->limit(20)
+                ->get();
+        }
+        return $this->articleLookup[$section->id];
     }
 }

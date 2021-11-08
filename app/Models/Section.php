@@ -60,6 +60,17 @@ class Section extends Model implements Sortable
         return $query->where('current', 1);
     }
 
+    public function scopeNonSpecial($query)
+    {
+        $specialTitles = ['About', 'News'];
+        return $query->whereNotIn('title', $specialTitles);
+    }
+
+    public function scopeForTitle($query, $title)
+    {
+        return $query->whereTitle($title);
+    }
+
     public function loadArticleCount()
     {
         $this->load([
