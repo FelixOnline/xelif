@@ -18,6 +18,10 @@ class SectionController extends Controller
 
     public function show($sectionSlug, $page = null)
     {
+        if ($sectionSlug === "puzzles") {
+            return app(PuzzleSectionController::class)->show();
+        }
+
         $section = Section::forSlug($sectionSlug)->firstOrFail();
 
         $numPages = (int)ceil($this->getArticleCount($section) / $this->articlesPerPage);

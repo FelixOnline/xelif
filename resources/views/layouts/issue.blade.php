@@ -15,10 +15,10 @@
     @endphp
     <section class="overview headlines">
         @if ($featured)
-            <x-tease image="true" byline="true" :section="true" :article="$featured" imageWidth=800/>
+            <x-tease image="true" byline="true" :section="true" :article="$featured" imageWidth=800 />
         @endif
         @foreach ($newsArticles->take($featured ? 3: 4) as $article)
-            <x-tease image="true" byline="true" :section="true" :article="$article" imageWidth=800/>
+            <x-tease image="true" byline="true" :section="true" :article="$article" imageWidth=800 />
         @endforeach
         <section class="subheadlines">
             <x-trending :articles="$topStories" :look="$look"/>
