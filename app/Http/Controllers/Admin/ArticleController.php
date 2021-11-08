@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\SettingsController;
 use App\Models\Issue;
+use App\Models\Section;
 use App\Repositories\IssueRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
@@ -65,7 +66,7 @@ class ArticleController extends GatedModuleController
             'continueReading' => [],
             'topStories' => [],
             'sections' => [],
-            'aboutSection' => \App\Models\Section::forSlug('about')->first(),
+            'aboutSection' => Section::forTitle('About')->first(),
         ];
     }
 
