@@ -15,14 +15,14 @@
     @endphp
     <section class="overview headlines">
         @if ($featured)
-            <x-tease image="true" byline="true" :section="true" :article="$featured" imageWidth=800 />
-        @endif
-        @foreach ($newsArticles->take($featured ? 3: 4) as $article)
-            <x-tease image="true" byline="true" :section="true" :article="$article" imageWidth=800 />
-        @endforeach
-        <section class="subheadlines">
-            <x-trending :articles="$topStories" :look="$look"/>
-        </section>
+            <x-tease image="true" byline="true" :section="true" :article="$featured" imageWidth=800/>
+                @endif
+                @foreach ($newsArticles->take($featured ? 3: 4) as $article)
+                    <x-tease image="true" byline="true" :section="true" :article="$article" imageWidth=800/>
+                        @endforeach
+                        <section class="subheadlines">
+                            <x-trending :articles="$topStories" :look="$look"/>
+                        </section>
     </section>
 
     <section class="overview additional-articles">
@@ -55,6 +55,26 @@
             </section>
         @endif
     @endforeach
+
+    <a id="sec-{{ $puzzlesSection->id }}"></a>
+    <section class="overview sec-{{ $puzzlesSection->id }}">
+        <div class="section-title">
+            <h2><a href="{{ $puzzlesSection->link() }}">{{ $puzzlesSection->title }}</a></h2>
+            <p><span>Section Editor: </span>
+                <x-name-list :writers="$puzzlesSection->writers"/>
+            </p>
+        </div>
+        @if (!$puzzleTeams->isEmpty())
+            <section class="overview puzzle-leaderboard">
+                <x-frontpage-leaderboard :teams="$puzzleTeams" :email="$puzzlesSection->email"/>
+            </section>
+            <p class="puzzle-caption">Congrats to this week's leaders! As always, you can send your solutions
+                to {{$puzzlesSection->email}} before Wednesday at 12:00</p>
+        @else
+            <p class="puzzle-caption">Shocking! Nobody has submitted their answers. Form a team and send your solutions
+                to {{$puzzlesSection->email}} before Wednesday at 12:00 to appear in the leaderboard.</p>
+        @endif
+    </section>
 
     <section class="overview">
         <div class="section-title">

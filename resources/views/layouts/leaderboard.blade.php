@@ -17,15 +17,8 @@
             </p>
             <p class="description">{{ $section->description }}</p>
         </header>
-
-        <table>
-            @foreach($teams as $team)
-                <tr>
-                    <th>{{$team->name}}</th>
-                    <th>{{$team->points}}</th>
-                </tr>
-            @endforeach
-        </table>
+        <br/>
+        <x-frontpage-leaderboard :teams="$teams" />
     </section>
 @endsection
 

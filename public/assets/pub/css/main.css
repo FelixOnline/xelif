@@ -405,6 +405,19 @@ article .byline .name
     font-style: italic;
 }
 
+.overview .puzzle-leaderboard
+{
+    margin: 0.5em 2rem;
+    max-width: 100%;
+}
+
+.overview .puzzle-caption
+{
+    margin: 0.5em 2rem;
+    font-size: 1.5em;
+}
+
+
 .overview .more a:hover
 {
     opacity: 0.7;
@@ -1012,6 +1025,18 @@ section.review dd
     {
         margin: 1em 4rem;
     }
+
+    .overview .puzzle-leaderboard
+    {
+        margin: 1em auto;
+        max-width: 50%;
+    }
+
+    .overview .puzzle-caption
+    {
+        margin: 1em 1rem;
+    }
+
 
     section.review
     {

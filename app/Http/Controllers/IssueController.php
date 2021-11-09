@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Issue;
+use App\Models\PuzzleTeam;
 use App\Models\Section;
 use App\Repositories\ArticleRepository;
 use Illuminate\Support\Facades\Cache;
@@ -30,9 +31,11 @@ class IssueController extends Controller
 //        {
         return view('layouts.issue', [
             'issue' => $issue,
-            'sections' => Section::current()->exceptForTitle(['News', 'About'])->ordered()->get(),
+            'sections' => Section::current()->exceptForTitle(['News', 'About', 'Puzzles'])->ordered()->get(),
             'newsSection' => Section::forTitle('News')->first(),
             'aboutSection' => Section::forTitle('About')->first(),
+            'puzzlesSection' => Section::forTitle('Puzzles')->first(),
+            'puzzleTeams' => PuzzleTeam::ordered()->get(),
             'topStories' => app(ArticleRepository::class)->getTopStories(),
             'featured' => $featured,
             'look' => $this->settingsController->lookAndFeel(),

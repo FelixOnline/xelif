@@ -8,9 +8,8 @@ if (!function_exists("coreData")) {
     function coreData(SettingsController $settingsController): array
     {
         return [
-            'sections' => Section::current()->ordered()->get(),
             'look' => $settingsController->lookAndFeel(),
-            'aboutSection' => Section::forSlug('about')->first(),
+            'aboutSection' => Section::forTitle('About')->first(),
         ];
     }
 }
