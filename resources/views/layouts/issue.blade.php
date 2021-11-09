@@ -56,25 +56,28 @@
         @endif
     @endforeach
 
-    <a id="sec-{{ $puzzlesSection->id }}"></a>
-    <section class="overview sec-{{ $puzzlesSection->id }}">
-        <div class="section-title">
-            <h2><a href="{{ $puzzlesSection->link() }}">{{ $puzzlesSection->title }}</a></h2>
-            <p><span>Section Editor: </span>
-                <x-name-list :writers="$puzzlesSection->writers"/>
-            </p>
-        </div>
-        @if (!$puzzleTeams->isEmpty())
-            <section class="overview puzzle-leaderboard">
-                <x-frontpage-leaderboard :teams="$puzzleTeams" :email="$puzzlesSection->email"/>
-            </section>
-            <p class="puzzle-caption">Congrats to this week's leaders! As always, you can send your solutions
-                to {{$puzzlesSection->email}} before Wednesday at 12:00</p>
-        @else
-            <p class="puzzle-caption">Shocking! Nobody has submitted their answers. Form a team and send your solutions
-                to {{$puzzlesSection->email}} before Wednesday at 12:00 to appear in the leaderboard.</p>
-        @endif
-    </section>
+    @if($puzzlesSection)
+        <a id="sec-{{ $puzzlesSection->id }}"></a>
+        <section class="overview sec-{{ $puzzlesSection->id }}">
+            <div class="section-title">
+                <h2><a href="{{ $puzzlesSection->link() }}">{{ $puzzlesSection->title }}</a></h2>
+                <p><span>Section Editor: </span>
+                    <x-name-list :writers="$puzzlesSection->writers"/>
+                </p>
+            </div>
+            @if (!$puzzleTeams->isEmpty())
+                <section class="overview puzzle-leaderboard">
+                    <x-frontpage-leaderboard :teams="$puzzleTeams" :email="$puzzlesSection->email"/>
+                </section>
+                <p class="puzzle-caption">Congrats to this week's leaders! As always, you can send your solutions
+                    to {{$puzzlesSection->email}} before Wednesday at 12:00</p>
+            @else
+                <p class="puzzle-caption">Shocking! Nobody has submitted their answers. Form a team and send your
+                    solutions
+                    to {{$puzzlesSection->email}} before Wednesday at 12:00 to appear in the leaderboard.</p>
+            @endif
+        </section>
+    @endif($puzzlesSection)
 
     <section class="overview">
         <div class="section-title">

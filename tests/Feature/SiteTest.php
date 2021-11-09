@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\SettingsController;
+use App\Models\Issue;
 use App\Models\Section;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -47,6 +48,7 @@ class SiteTest extends TestCase
 
         $this->newsSection = Section::factory()->create(['title' => 'News']);
         $this->aboutSection = Section::factory()->create(['title' => 'About']);
+        Issue::factory()->published(true)->create();
     }
 
 }
