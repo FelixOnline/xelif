@@ -1,14 +1,5 @@
 @extends('layouts.core')
 
-@section('head-js')
-    @parent
-    {{-- <script> --}}
-    window.onScroll = function(e) {
-
-    }
-    {{-- </script> --}}
-@endsection
-
 @section('body')
     @php
         $newsArticles = $issue->articleRange($newsSection, null, $featured ? 7 : 8, !$singleIssueView);
