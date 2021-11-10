@@ -53,6 +53,7 @@
         @section('head-css')
         @show
     </style>
+    @stack('head-css')
 
     <script>
         @section('head-js')
