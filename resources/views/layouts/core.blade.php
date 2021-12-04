@@ -114,7 +114,7 @@
     <h1><a href="{{ route('home')}}">{{ $look['masthead-title'] }}</a></h1>
     <p class="tagline">
         @if ($issue ?? false)
-            Issue {{ $issue->issue }} (<a href="https://archive.felixonline.co.uk/issue?no={{ $issue->issue }}">PDF</a>)<br/>
+            Issue {{ $issue->issue }} (<a href="https://archive.felixonline.co.uk/issue/{{ $issue->issue }}">PDF</a>)<br/>
         @endif
         {{ $look['tagline'] }}</p>
     <p class="motto">
