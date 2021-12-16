@@ -15,8 +15,13 @@ Welcome to Felix website N+1. Enjoy your stay.
 3. Copy `.env.example` into a new file called `.env`
 4. Run `php artisan key:generate`
 5. In `.env`, set `DB_USERNAME` and `DB_PASSWORD` to the credentials of the MySQL account
-6. In `.env`, set `ADMIN_APP_PATH` to `edit`
-7. Run `php artisan twill:install` and set up the admin account
-8. Run `php artisan storage:link` to set up local media storage
-9. Make sections called `News`, `About` (TODO: automate this part)
-10. Start up a development server via `php artisan serve`
+6. Run `php artisan twill:install` and set up the admin account
+7. Run `php artisan storage:link` to set up local media storage
+8. Make sections called `News`, `About` (TODO: automate this part)
+9. Start up a development server via `php artisan serve`
+
+### Required PHP extensions (incomplete)
+(On Windows, uncomment `extension_dir = "ext"`)
+- mbstring
+- pdo_mysql (or pdo_pgsql if using postgres)
+- fileinfo
