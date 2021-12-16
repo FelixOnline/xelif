@@ -124,5 +124,4 @@
             </section>
         @endif
     </section>
-    <img src="{{ route('article.track', [$article->id]) }}" alt="Readership"/>
 @endsection

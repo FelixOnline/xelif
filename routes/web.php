@@ -11,9 +11,6 @@ Route::get('/issue/{id}', [\App\Http\Controllers\IssueController::class, 'show']
 Route::get('/issue/{issue}/{section}/{slug}', [\App\Http\Controllers\ArticleController::class, 'show'])
     ->name('article');
 
-Route::get('/_v/{id}', [\App\Http\Controllers\ArticleController::class, 'trackView'])
-    ->name('article.track');
-
 Route::get('/section/{name}/page/{page}', [\App\Http\Controllers\SectionController::class, 'show'])
     ->name('section.page');
 
