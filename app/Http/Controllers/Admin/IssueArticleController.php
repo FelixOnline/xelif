@@ -9,7 +9,7 @@ use App\Repositories\IssueRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
-class ArticleController extends GatedModuleController
+class IssueArticleController extends GatedModuleController
 {
     public function __construct(
         SettingsController $settings,
@@ -22,7 +22,9 @@ class ArticleController extends GatedModuleController
 
     protected $settings;
 
-    protected $moduleName = 'articles';
+    protected $moduleName = 'issues.articles';
+
+    protected $modelName = 'Article';
 
     protected $titleColumnKey = 'headline';
 
@@ -56,6 +58,12 @@ class ArticleController extends GatedModuleController
 
     protected $filtersDefaultOptions = ['issue' => self::LATEST_ISSUE_FILTER_VALUE];
 
+    // For nested module https://twill.io/docs/crud-modules/nested-modules.html#parent-child-modules
+    protected function getParentModuleForeignKey()
+    {
+        return 'issue_id';
+    }
+
     protected function previewData($item)
     {
         return [
@@ -72,15 +80,34 @@ class ArticleController extends GatedModuleController
 
     protected function formData($request)
     {
+        $issue = app(IssueRepository::class)->getById(request('issue'));
         return [
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
             'issues' => app()->make(IssueRepository::class)->listAll('issue')->sortDesc(),
             'editableTitle' => false,
+            'breadcrumb' => [
+                [
+                    'label' => 'Issues',
+                    'url' => moduleRoute('issues', '', 'index'),
+                ],
+                [
+                    'label' => $issue->issue,
+                    'url' => moduleRoute('issues', '', 'edit', $issue->id),
+                ],
+                [
+                    'label' => 'Articles',
+                    'url' => moduleRoute('issues.articles', '', 'index'),
+                ],
+                [
+                    'label' => 'Edit',
+                ],
+            ],
         ];
     }
 
     protected function indexData($request)
     {
+        $issue = app(IssueRepository::class)->getById(request('issue'));
         return [
             'issueList' => array_merge(
                 [
@@ -89,6 +116,19 @@ class ArticleController extends GatedModuleController
                 ],
                 $this->getIssueFilterEntries()
             ),
+            'breadcrumb' => [
+                [
+                    'label' => 'Issues',
+                    'url' => moduleRoute('issues', '', 'index'),
+                ],
+                [
+                    'label' => $issue->issue,
+                    'url' => moduleRoute('issues', '', 'edit', $issue->id),
+                ],
+                [
+                    'label' => 'Articles',
+                ],
+            ],
         ];
     }
 

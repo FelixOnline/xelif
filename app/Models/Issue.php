@@ -28,7 +28,7 @@ class Issue extends Model implements Sortable
 
     protected $with = ['slugs'];
 
-    public function article()
+    public function articles()
     {
         return $this->hasMany(\App\Models\Article::class);
     }
@@ -91,7 +91,7 @@ class Issue extends Model implements Sortable
     protected function buildArticleLookup(Section $section)
     {
         if (!isset($this->articleLookup[$section->id])) {
-            $this->articleLookup[$section->id] = $this->article()->published()->visible()
+            $this->articleLookup[$section->id] = $this->articles()->published()->visible()
                 ->where('section_id', $section->id)
                 ->orderBy('position')
                 ->limit(20)

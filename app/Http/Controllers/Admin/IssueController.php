@@ -19,5 +19,9 @@ class IssueController extends GatedModuleController
             'title' => 'Publish On',
             'field' => 'publish_start_date'
         ],
+        'articles' => [
+            'title' => 'Articles',
+            'nested' => 'articles'
+        ]
     ];
 }

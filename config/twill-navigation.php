@@ -5,10 +5,6 @@ return [
         'title' => 'Issues',
         'module' => true,
     ],
-    'articles' => [
-        'title' => 'Articles',
-        'module' => true,
-    ],
     'sections' => [
         'title' => 'Sections',
         'module' => true,
