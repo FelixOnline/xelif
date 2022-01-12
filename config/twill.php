@@ -29,6 +29,12 @@ return [
                 'icon' => 'star-feature',
                 'component' => 'a17-block-book-review',
             ],
+            'film-review' => [
+                'title' => 'Film Review',
+                'icon' => 'star-feature',
+                'component' => 'a17-block-film-review',
+            ],
+
         ],
         'block_views_path' => 'blocks',
         'block_single_layout' => 'admin/block-preview',
