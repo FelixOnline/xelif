@@ -26,6 +26,8 @@ class IssueArticleController extends GatedModuleController
 
     protected $modelName = 'Article';
 
+    protected $previewView = "layouts.article";
+
     protected $titleColumnKey = 'headline';
 
     protected $indexOptions = [
