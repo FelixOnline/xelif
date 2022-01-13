@@ -18,7 +18,7 @@ class IssueRepository extends ModuleRepository
 
     public function afterSave($object, $fields)
     {
-        $this->updateRepeater($object, $fields, 'article', 'Article');
+        $this->updateRepeater($object, $fields, 'articles', 'Article');
         parent::afterSave($object, $fields);
 
         IssueController::clearCache($object->id);
