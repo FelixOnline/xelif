@@ -10,6 +10,7 @@ use A17\Twill\Models\Behaviors\HasSlug;
 use A17\Twill\Models\Behaviors\Sortable;
 use A17\Twill\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 
 class Article extends Model implements Sortable
 {
@@ -64,6 +65,13 @@ class Article extends Model implements Sortable
 
     // Articles are almost always fetched these models
     protected $with = ['section', 'issue', 'slugs', 'medias'];
+
+    protected static function booted()
+    {
+        static::deleted(function () {
+            Cache::delete('top stories');
+        });
+    }
 
     public function writers()
     {
