@@ -20,6 +20,7 @@
         @foreach ($newsArticles->skip($featured ? 3: 4) as $article)
             <x-tease :article="$article" :section="true"/>
         @endforeach
+        <p class="more sec-{{ $newsSection->id }}"><a href="{{ $newsSection->link() }}">Read more &raquo;</a>
     </section>
 
     @foreach ($sections as $dispSection)
