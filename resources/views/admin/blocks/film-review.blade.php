@@ -10,6 +10,11 @@
 ])
 
 @formField('input', [
+'name' => 'year',
+'label' => 'Year',
+])
+
+@formField('input', [
 'name' => 'starring',
 'label' => 'Starring (Optional)',
 ])
