@@ -32,6 +32,10 @@ return [
             ]
         ],
     ],
+    'analytics' => [
+        'title' => 'Analytics',
+        'route' => 'admin.analytics',
+    ],
     'settings' => [
         'title' => 'Settings',
         'route' => 'admin.settings',

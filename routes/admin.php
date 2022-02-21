@@ -8,3 +8,5 @@ Route::module('puzzleTeams');
 
 Route::name('uploader')->get('/articleUpload', 'ArticleUploadController@show');
 Route::name('uploader.save')->post('/articleUpload/save', 'ArticleUploadController@save');
+
+Route::name('analytics')->get('/analytics', 'AnalyticsController@show');
