@@ -30,7 +30,11 @@
             <tbody>
             @foreach($articles as $article)
                 <tr>
-                    <td>{{ $article->issue->issue }}</td>
+                    @if ($article->issue)
+                        <td>{{ $article->issue->issue }}</td>
+                    @else
+                        <td>No Issue</td>
+                    @endif
                     <td><a href="{{$article->link()}}">{{ $article->headline }}</a></td>
                     <td>{{ $article->section->title }}</td>
                     <td>{{ $article->view_count }}</td>
