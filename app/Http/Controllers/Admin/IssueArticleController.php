@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\SettingsController;
 use App\Models\Issue;
 use App\Models\Section;
+use App\Repositories\ArticleRepository;
 use App\Repositories\IssueRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
@@ -83,6 +84,7 @@ class IssueArticleController extends GatedModuleController
     protected function formData($request)
     {
         $issue = app(IssueRepository::class)->getById(request('issue'));
+        $article = app(ArticleRepository::class)->getById(request('article'));
         return [
             'sections' => app()->make(\App\Repositories\SectionRepository::class)->listAll(),
             'issues' => app()->make(IssueRepository::class)->listAll('issue')->sortDesc(),
@@ -104,6 +106,7 @@ class IssueArticleController extends GatedModuleController
                     'label' => 'Edit',
                 ],
             ],
+            'customPermalink' => $article->link(),
         ];
     }
 
