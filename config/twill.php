@@ -34,7 +34,11 @@ return [
                 'icon' => 'star-feature',
                 'component' => 'a17-block-film-review',
             ],
-
+            'image' => [
+                'title' => 'Image',
+                'icon' => 'image',
+                'component' => 'a17-block-image',
+            ]
         ],
         'block_views_path' => 'blocks',
         'block_single_layout' => 'admin/block-preview',
