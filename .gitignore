@@ -14,3 +14,6 @@ yarn-error.log
 *.swo
 .idea
 .env.testing
+
+# Tmp files locally
+/tmp
