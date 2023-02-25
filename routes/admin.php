@@ -10,3 +10,4 @@ Route::name('uploader')->get('/articleUpload', 'ArticleUploadController@show');
 Route::name('uploader.save')->post('/articleUpload/save', 'ArticleUploadController@save');
 
 Route::name('analytics')->get('/analytics', 'AnalyticsController@show');
+Route::name('analytics.articleView')->get('/analytics/articleView/{id}', 'AnalyticsController@export');

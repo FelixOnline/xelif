@@ -25,6 +25,7 @@
                 <th>Article</th>
                 <th>Section</th>
                 <th>Views</th>
+                <th>CSV Export</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +39,7 @@
                     <td><a href="{{$article->link()}}">{{ $article->headline }}</a></td>
                     <td>{{ $article->section->title }}</td>
                     <td>{{ $article->view_count }}</td>
+                    <td><a href="{{ route("admin.analytics.articleView", ["id" => $article->id]) }}">Export</a></td>
                 </tr>
             @endforeach
             </tbody>

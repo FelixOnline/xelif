@@ -6,7 +6,6 @@ use A17\Twill\Http\Controllers\Admin\Controller;
 use App\Models\Article;
 use App\Models\ArticleView;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class AnalyticsController extends Controller
 {
@@ -24,6 +23,20 @@ class AnalyticsController extends Controller
         return view('admin.analytics.analytics', [
             'articles' => $articles
         ]);
+    }
+
+    public function export($article_id) {
+        $slug = Article::find($article_id)->slug;
+        $views = ArticleView::where('article_id', $article_id)->get();
+
+        return response()->streamDownload(function () use ($views) {
+            $out = fopen('php://output', 'w');
+            fputcsv($out, ['created_at', 'user_agent', 'referer']);
+            foreach ($views as $view) {
+                fputcsv($out, [$view->created_at, $view->user_agent, $view->referer]);
+            }
+            fclose($out);
+        }, "$slug.csv");
     }
 
 }
