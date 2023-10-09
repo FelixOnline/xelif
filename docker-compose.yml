@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  xelif:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Make sure database is started first
+    depends_on:
+      - xelif-db
+    # For debugging only
+    ports:
+      - 80:80
+    # For communication with database
+    networks:
+      - internal
+    container_name: xelif
+    volumes:
+      - "/srv/felix/uploads:/var/www/html/xelif/storage/app/public/uploads"
+    env_file:
+      - ".env"
+
+  xelif-db:
+    image: mysql
+    restart: always
+    container_name: xelif-db
+    volumes:
+      - "/opt/mysql:/var/lib/mysql"
+      - "/opt/mysqld.conf:/etc/mysql/conf.d/mysqld.conf"
+    networks:
+      - internal
+
+networks:
+  internal:
