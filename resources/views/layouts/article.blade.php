@@ -70,7 +70,7 @@
                         <img src="{{ $article->image('main', 'flexible') }}"
                              alt="{{ $article->imageAltText('main') }}"/>
                         @if ($credit)
-                            <span class="credit">Photo: {{ $credit }}</span>
+                            <span class="credit">Credit: {{ $credit }}</span>
                         @endif
                     </figure>
                 @endif
