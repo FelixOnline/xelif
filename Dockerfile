@@ -43,6 +43,10 @@ RUN a2enmod rewrite
 # Increase PHP memory limit
 RUN echo 'memory_limit = 1G' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
+# Increase max file upload size
+RUN echo 'upload_max_filesize = 100M' >> /usr/local/etc/php/conf.d/docker-php-uploadlimit.ini;
+RUN echo 'post_max_size = 100M' >> /usr/local/etc/php/conf.d/docker-php-uploadlimit.ini;
+
 # Install PHP composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
